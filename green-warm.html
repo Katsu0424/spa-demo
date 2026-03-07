@@ -1,0 +1,3430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アウル訪問看護ステーション</title>
+<style>
+/* ===================================
+   アウル訪問看護ステーション
+   共通CSS - 緑系カラー × 温かみ
+   =================================== */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
+
+/* ===== CSS Custom Properties ===== */
+:root {
+  /* 緑系カラーパレット（薄め） */
+  --color-primary: #6db89a;
+  --color-primary-dark: #4a9e7a;
+  --color-primary-light: #8fd4b8;
+  --color-primary-lighter: #b8e8d2;
+  --color-primary-lightest: #e0f5eb;
+
+  /* アクセント・温かみ */
+  --color-accent: #e07a3a;
+  --color-accent-light: #f4a261;
+  --color-warm: #fdf0d5;
+  --color-warm-dark: #ddb892;
+
+  /* ニュートラル */
+  --color-text: #2c2c2c;
+  --color-text-light: #5a5a5a;
+  --color-text-muted: #8a8a8a;
+  --color-bg: #fafdf8;
+  --color-white: #ffffff;
+  --color-border: #e0e8e0;
+
+  /* フォント */
+  --font-main: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+
+  /* サイズ */
+  --header-height: 80px;
+  --max-width: 1100px;
+
+  /* シャドウ */
+  --shadow-sm: 0 2px 8px rgba(45, 106, 79, 0.08);
+  --shadow-md: 0 4px 16px rgba(45, 106, 79, 0.12);
+  --shadow-lg: 0 8px 32px rgba(45, 106, 79, 0.16);
+
+  /* 角丸 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* トランジション */
+  --transition: 0.3s ease;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ===== ユーティリティ ===== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section--bg {
+  background: var(--color-primary-lightest);
+}
+
+.section--warm {
+  background: var(--color-warm);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent-light));
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 48px;
+}
+
+/* ===== フクロウSVGアイコン ===== */
+.owl-icon {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  vertical-align: middle;
+}
+
+.owl-icon--sm {
+  width: 24px;
+  height: 24px;
+}
+
+.owl-icon--lg {
+  width: 48px;
+  height: 48px;
+}
+
+/* ===== ヘッダー ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition);
+}
+
+.header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.header__logo:hover {
+  color: var(--color-primary);
+}
+
+.header__logo-sub {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.header__phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 8px 16px;
+  border-radius: var(--radius-xl);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.header__phone:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: scale(1.03);
+}
+
+.header__phone-icon {
+  font-size: 1.1rem;
+}
+
+.header__phone-label {
+  font-size: 0.65rem;
+  font-weight: 400;
+  display: block;
+}
+
+/* ナビゲーション */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav__link {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  position: relative;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary-light);
+  border-radius: 1px;
+  transition: all var(--transition);
+  transform: translateX(-50%);
+}
+
+.nav__link:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-lightest);
+}
+
+.nav__link:hover::after {
+  width: 60%;
+}
+
+.nav__link--active {
+  color: var(--color-primary);
+  background: var(--color-primary-lightest);
+}
+
+/* ハンバーガーメニュー */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1100;
+}
+
+.hamburger__line {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--color-primary-dark);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.hamburger.is-active .hamburger__line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.is-active .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-active .hamburger__line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* モバイルメニュー */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  z-index: 1050;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mobile-nav.is-open {
+  display: flex;
+}
+
+.mobile-nav__link {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.mobile-nav__link:hover {
+  background: var(--color-primary-lightest);
+  color: var(--color-primary);
+}
+
+.mobile-nav__phone {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 14px 28px;
+  border-radius: var(--radius-xl);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ===== ページトップ余白 ===== */
+.page-top-spacer {
+  height: var(--header-height);
+}
+
+/* ===== ヒーロー ===== */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 40%, var(--color-primary-light) 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(244, 162, 97, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatBubble 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(149, 213, 178, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatBubble 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatBubble {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.05); }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  color: var(--color-white);
+}
+
+.hero__catch {
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero__catch span {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__text {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 2;
+  margin-bottom: 32px;
+  opacity: 0.92;
+  max-width: 600px;
+}
+
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  padding: 10px 20px;
+  border-radius: var(--radius-xl);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.hero__badge:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 16px 36px;
+  border-radius: var(--radius-xl);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(224, 122, 58, 0.3);
+}
+
+.hero__cta:hover {
+  background: var(--color-accent-light);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(224, 122, 58, 0.4);
+}
+
+/* フクロウ装飾（ヒーロー） */
+.hero__owl {
+  position: absolute;
+  right: 8%;
+  bottom: 15%;
+  z-index: 1;
+  opacity: 0.15;
+  animation: owlFloat 6s ease-in-out infinite;
+}
+
+@keyframes owlFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(2deg); }
+  75% { transform: translateY(10px) rotate(-2deg); }
+}
+
+/* ===== カード ===== */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+  border: 1px solid var(--color-border);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.card__icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--color-primary-lightest), var(--color-primary-lighter));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.card__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+}
+
+.card__text {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* 3カラムグリッド */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ===== 強み3つ ===== */
+.strengths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+}
+
+.strength-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition);
+  border-top: 4px solid var(--color-primary-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-primary-lightest) 0%, transparent 40%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.strength-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.strength-card:hover::before {
+  opacity: 1;
+}
+
+.strength-card__icon {
+  position: relative;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+  color: var(--color-white);
+  transition: transform var(--transition);
+}
+
+.strength-card:hover .strength-card__icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.strength-card__title {
+  position: relative;
+  z-index: 1;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+}
+
+.strength-card__text {
+  position: relative;
+  z-index: 1;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+/* ===== ボタン ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn--accent:hover {
+  background: #c86a2e;
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn--outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn--white {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn--white:hover {
+  background: var(--color-primary-lightest);
+  color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* ===== プレースホルダー画像 ===== */
+.placeholder-img {
+  background: linear-gradient(135deg, #d0d8d0, #b8c4b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a8a7a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.placeholder-img::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 2px dashed #9aaa9a;
+  border-radius: 50%;
+}
+
+/* ===== お知らせ ===== */
+.news-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.news-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: all var(--transition);
+}
+
+.news-item:hover {
+  padding-left: 8px;
+}
+
+.news-date {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.news-label {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-lightest);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.news-label--important {
+  background: #fde8d8;
+  color: var(--color-accent);
+}
+
+.news-title {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.news-title a:hover {
+  color: var(--color-accent);
+}
+
+/* ===== フッター ===== */
+.footer {
+  background: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 60px 0 0;
+}
+
+.footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+
+.footer__info {
+  font-size: 0.85rem;
+  line-height: 2;
+  opacity: 0.85;
+}
+
+.footer__heading {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-primary-light);
+  display: inline-block;
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer__nav a {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  transition: all var(--transition);
+}
+
+.footer__nav a:hover {
+  color: var(--color-white);
+  padding-left: 4px;
+}
+
+.footer__social {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+
+.footer__social-link:hover {
+  background: var(--color-primary-light);
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+.footer__bottom {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ===== ページヘッダー（下層ページ） ===== */
+.page-header {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  padding: 60px 0 50px;
+  text-align: center;
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.page-header__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.page-header__breadcrumb {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  position: relative;
+}
+
+.page-header__breadcrumb a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.page-header__breadcrumb a:hover {
+  color: var(--color-white);
+}
+
+/* ===== スクロールアニメーション ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scale-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 遅延 */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* ===== スタッフカード ===== */
+.staff-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.staff-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.staff-card__photo {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(135deg, #c8d8c8, #a8bca8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a9a7a;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.staff-card__photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.5));
+}
+
+.staff-card__body {
+  padding: 24px;
+}
+
+.staff-card__role {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--color-primary-lightest);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+.staff-card__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 4px;
+}
+
+.staff-card__qualifications {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.staff-card__message {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* ===== テーブル ===== */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.info-table th,
+.info-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.info-table th {
+  background: var(--color-primary-lightest);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  width: 180px;
+  white-space: nowrap;
+}
+
+.info-table tr:hover td {
+  background: #f8fcf6;
+}
+
+/* ===== ステップ（利用の流れ） ===== */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.step__number {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: 1.3rem;
+  font-weight: 900;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+  position: relative;
+}
+
+.step:not(:last-child) .step__number::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 32px;
+  background: var(--color-primary-lighter);
+}
+
+.step__content {
+  padding-top: 8px;
+}
+
+.step__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 8px;
+}
+
+.step__text {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+/* ===== FAQ ===== */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition);
+}
+
+.faq-item:hover {
+  border-color: var(--color-primary-lighter);
+}
+
+.faq-question {
+  padding: 20px 24px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: background var(--transition);
+}
+
+.faq-question:hover {
+  background: var(--color-primary-lightest);
+}
+
+.faq-question::before {
+  content: 'Q.';
+  color: var(--color-primary-light);
+  font-weight: 900;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.3rem;
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.faq-item.is-open .faq-question::after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 24px 0 52px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.faq-item.is-open .faq-answer {
+  padding: 0 24px 20px 52px;
+  max-height: 300px;
+}
+
+/* ===== 料金シミュレーション ===== */
+.simulator {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-md);
+}
+
+.simulator__group {
+  margin-bottom: 24px;
+}
+
+.simulator__label {
+  display: block;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.simulator__select,
+.simulator__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  transition: border-color var(--transition);
+  appearance: none;
+  background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d6a4f' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 16px center;
+}
+
+.simulator__select:focus,
+.simulator__input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+}
+
+.simulator__result {
+  background: linear-gradient(135deg, var(--color-primary-lightest), var(--color-warm));
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.simulator__result-label {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 4px;
+}
+
+.simulator__result-amount {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+}
+
+.simulator__result-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+/* ===== コラム記事カード ===== */
+.column-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.column-filter {
+  padding: 8px 20px;
+  border: 2px solid var(--color-primary-lighter);
+  border-radius: var(--radius-xl);
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.column-filter:hover,
+.column-filter.is-active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.column-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.column-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.column-card__thumb {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #c8d8c8, #a8bca8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a9a7a;
+  font-size: 0.85rem;
+}
+
+.column-card__body {
+  padding: 20px;
+}
+
+.column-card__label {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-lightest);
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.column-card__date {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.column-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.column-card__excerpt {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== 採用 ===== */
+.recruit-point {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.recruit-point:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.recruit-point__icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--color-primary-lightest), var(--color-warm));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.recruit-point__content {
+  flex: 1;
+}
+
+.recruit-point__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 6px;
+}
+
+.recruit-point__text {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+/* ===== お問い合わせフォームプレースホルダー ===== */
+.form-placeholder {
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 500px;
+  background: var(--color-white);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  text-align: center;
+  padding: 40px;
+}
+
+/* ===== CTA セクション ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  padding: 60px 0;
+  text-align: center;
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-section__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.cta-section__text {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.cta-section .btn {
+  position: relative;
+}
+
+/* ===== 医療機関向け ===== */
+.medical-feature {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.medical-feature:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.medical-feature__img {
+  flex: 1;
+  min-height: 250px;
+  background: linear-gradient(135deg, #c8d8c8, #a8bca8);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a9a7a;
+  font-size: 0.9rem;
+}
+
+.medical-feature__content {
+  flex: 1;
+}
+
+.medical-feature__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+}
+
+.medical-feature__text {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* ===== タグ一覧 ===== */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--color-primary-lightest);
+  color: var(--color-primary);
+  border-radius: var(--radius-xl);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ===== マップ プレースホルダー ===== */
+.map-placeholder {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #d8e0d8, #c0ccc0);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a8a7a;
+  font-size: 0.9rem;
+}
+
+/* ===== プライバシーポリシー ===== */
+.privacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.privacy-content h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 36px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--color-primary-light);
+}
+
+.privacy-content p {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.privacy-content ul {
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+
+.privacy-content li {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  list-style: disc;
+}
+
+/* ===== サービスリンクカード ===== */
+.service-link-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+  border: 2px solid transparent;
+}
+
+.service-link-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-lighter);
+}
+
+.service-link-card__icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--color-primary-lightest), var(--color-primary-lighter));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+  transition: transform var(--transition);
+}
+
+.service-link-card:hover .service-link-card__icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-link-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+}
+
+.service-link-card__text {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 968px) {
+  .nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .header__phone {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .hero__catch {
+    font-size: 2rem;
+  }
+
+  .hero__owl {
+    display: none;
+  }
+
+  .strengths {
+    grid-template-columns: 1fr;
+    margin-top: -30px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .medical-feature,
+  .medical-feature:nth-child(even) {
+    flex-direction: column;
+  }
+
+  .info-table th {
+    width: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero__catch {
+    font-size: 1.6rem;
+  }
+
+  .hero__text {
+    font-size: 0.95rem;
+  }
+
+  .hero__badges {
+    gap: 8px;
+  }
+
+  .hero__badge {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .page-header__title {
+    font-size: 1.5rem;
+  }
+
+  .info-table th,
+  .info-table td {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+  }
+
+  .info-table th {
+    border-bottom: none;
+    padding-bottom: 4px;
+  }
+
+  .step {
+    gap: 16px;
+  }
+
+  .step__number {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .recruit-point {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .simulator {
+    padding: 24px;
+  }
+}
+
+/* ===== 波形装飾 ===== */
+.wave-divider {
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+}
+
+.wave-divider svg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+/* ===== 数字ハイライト ===== */
+.number-highlight {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.number-highlight span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+/* ===== エリアバッジ ===== */
+.area-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.area-badge {
+  padding: 6px 16px;
+  background: var(--color-primary-lightest);
+  color: var(--color-primary);
+  border-radius: var(--radius-xl);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.area-badge--primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="header__inner">
+      <a href="#home" class="header__logo">
+        <svg class="owl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="48" r="38" fill="#e0f5eb" stroke="#6db89a" stroke-width="3"/>
+          <circle cx="38" cy="42" r="12" fill="#fff" stroke="#6db89a" stroke-width="2"/>
+          <circle cx="62" cy="42" r="12" fill="#fff" stroke="#6db89a" stroke-width="2"/>
+          <circle cx="40" cy="41" r="5" fill="#4a9e7a"/>
+          <circle cx="64" cy="41" r="5" fill="#4a9e7a"/>
+          <path d="M46 56 L50 62 L54 56" stroke="#e07a3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#e07a3a"/>
+          <path d="M24 30 Q30 10 50 20" stroke="#6db89a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M76 30 Q70 10 50 20" stroke="#6db89a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="50" cy="75" rx="18" ry="10" fill="#b8e8d2"/>
+        </svg>
+        <div>
+          アウル訪問看護ステーション
+          <span class="header__logo-sub">OWL Visiting Nursing Station</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#home" class="nav__link nav__link--active">ホーム</a>
+        <a href="#service" class="nav__link">サービス</a>
+        <a href="#staff" class="nav__link">スタッフ</a>
+        <a href="#guide" class="nav__link">ご利用案内</a>
+        <a href="#medical" class="nav__link">医療機関の方</a>
+        <a href="#column" class="nav__link">コラム</a>
+        <a href="#company" class="nav__link">会社情報</a>
+        <a href="#recruit" class="nav__link">採用</a>
+        <a href="#contact" class="nav__link">お問い合わせ</a>
+      </nav>
+
+      <a href="tel:072-000-0000" class="header__phone">
+        <span class="header__phone-icon">&#9742;</span>
+        <div>
+          <span class="header__phone-label">365日対応</span>
+          072-000-0000
+        </div>
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+<div id="page-home" class="page-section" style="display:block">
+<!-- モバイルナビ -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a>
+    <a href="#service" class="mobile-nav__link">サービス</a>
+    <a href="#staff" class="mobile-nav__link">スタッフ</a>
+    <a href="#guide" class="mobile-nav__link">ご利用案内</a>
+    <a href="#medical" class="mobile-nav__link">医療機関の方</a>
+    <a href="#column" class="mobile-nav__link">コラム</a>
+    <a href="#company" class="mobile-nav__link">会社情報</a>
+    <a href="#recruit" class="mobile-nav__link">採用</a>
+    <a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone">
+      <span>&#9742;</span> 072-000-0000
+    </a>
+  </nav>
+
+  <!-- ===== ヒーロー ===== -->
+  <div class="page-top-spacer"></div>
+
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__catch fade-in">
+        あなたの暮らしに、<br>
+        <span>安心のそばに。</span>
+      </h1>
+      <p class="hero__text fade-in delay-1">
+        アウル訪問看護ステーションは、大阪府貝塚市を中心に<br>
+        精神科訪問看護を専門とする訪問看護ステーションです。<br>
+        看護師がご自宅に伺い、心と体の健康をサポートします。
+      </p>
+      <div class="hero__badges fade-in delay-2">
+        <span class="hero__badge">&#128155; 精神科訪問看護に強い</span>
+        <span class="hero__badge">&#128197; 365日対応</span>
+        <span class="hero__badge">&#129657; 看護師が訪問</span>
+      </div>
+      <a href="#contact" class="hero__cta fade-in delay-3">
+        まずはお気軽にご相談ください &#8594;
+      </a>
+    </div>
+
+    <!-- フクロウ装飾 -->
+    <div class="hero__owl">
+      <svg width="200" height="220" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="110" rx="70" ry="80" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="75" cy="90" r="22" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <circle cx="125" cy="90" r="22" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <circle cx="78" cy="88" r="8" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="128" cy="88" r="8" fill="rgba(255,255,255,0.4)"/>
+        <path d="M93 115 L100 125 L107 115" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" fill="rgba(255,255,255,0.2)"/>
+        <path d="M45 65 Q60 25 100 45" stroke="rgba(255,255,255,0.25)" stroke-width="3" fill="none"/>
+        <path d="M155 65 Q140 25 100 45" stroke="rgba(255,255,255,0.25)" stroke-width="3" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== 強み3つ ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="strengths">
+        <div class="strength-card fade-in delay-1">
+          <div class="strength-card__icon">&#128153;</div>
+          <h3 class="strength-card__title">精神科看護の専門性</h3>
+          <p class="strength-card__text">精神科での経験豊富な看護師が在籍。統合失調症、うつ病、双極性障害など、幅広い精神疾患に対応いたします。</p>
+        </div>
+        <div class="strength-card fade-in delay-2">
+          <div class="strength-card__icon">&#127752;</div>
+          <h3 class="strength-card__title">365日、安心の対応</h3>
+          <p class="strength-card__text">土日祝も含め365日対応。緊急時の電話相談も受け付けています。いつでも頼れる安心感をお届けします。</p>
+        </div>
+        <div class="strength-card fade-in delay-3">
+          <div class="strength-card__icon">&#127968;</div>
+          <h3 class="strength-card__title">住み慣れたご自宅で</h3>
+          <p class="strength-card__text">ご利用者さまが安心できるご自宅に看護師が伺います。生活に寄り添いながら、自立した暮らしを支援します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== サービス概要 ===== -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">サービスのご案内</h2>
+      <p class="section-subtitle fade-in">訪問看護を中心に、地域の暮らしを支えるサービスを提供しています</p>
+
+      <div class="card-grid">
+        <div class="card fade-in delay-1">
+          <div class="card__icon">&#129657;</div>
+          <h3 class="card__title">訪問看護</h3>
+          <p class="card__text">看護師がご自宅に訪問し、健康管理・服薬管理・日常生活の支援を行います。精神科訪問看護を中心に、幅広いニーズに対応します。</p>
+          <a href="#service" class="btn btn--outline" style="margin-top: 16px; font-size: 0.85rem; padding: 10px 20px;">詳しく見る &#8594;</a>
+        </div>
+        <div class="card fade-in delay-2">
+          <div class="card__icon">&#127803;</div>
+          <h3 class="card__title">生活介護事業</h3>
+          <p class="card__text">日中の活動支援や創作活動、社会参加の機会を提供します。一人ひとりのペースに合わせた支援を大切にしています。</p>
+          <a href="#service" class="btn btn--outline" style="margin-top: 16px; font-size: 0.85rem; padding: 10px 20px;">詳しく見る &#8594;</a>
+        </div>
+        <div class="card fade-in delay-3">
+          <div class="card__icon">&#127969;</div>
+          <h3 class="card__title">グループホーム</h3>
+          <p class="card__text">少人数制のグループホームで、スタッフの見守りのもと安心して生活できる住まいを提供しています。</p>
+          <a href="#service" class="btn btn--outline" style="margin-top: 16px; font-size: 0.85rem; padding: 10px 20px;">詳しく見る &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== お知らせ ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">お知らせ</h2>
+      <p class="section-subtitle fade-in">最新のニュース・トピックスをお届けします</p>
+
+      <div class="news-list fade-in">
+        <div class="news-item">
+          <span class="news-date">2026.03.01</span>
+          <span class="news-label news-label--important">重要</span>
+          <span class="news-title"><a href="#">春季休業のお知らせ（3月20日〜21日）</a></span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2026.02.15</span>
+          <span class="news-label">お知らせ</span>
+          <span class="news-title"><a href="#">新しいスタッフが加わりました</a></span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2026.02.01</span>
+          <span class="news-label">コラム</span>
+          <span class="news-title"><a href="#column">「在宅での服薬管理のポイント」を公開しました</a></span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2026.01.15</span>
+          <span class="news-label">お知らせ</span>
+          <span class="news-title"><a href="#">対応エリアを拡大しました（岸和田市・泉佐野市）</a></span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2026.01.04</span>
+          <span class="news-label">お知らせ</span>
+          <span class="news-title"><a href="#">新年のご挨拶</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">まずはお気軽にご相談ください</h2>
+      <p class="cta-section__text fade-in delay-1">
+        ご本人・ご家族・医療機関の方、どなたからのご相談も受け付けています。<br>
+        お電話またはお問い合わせフォームからお気軽にどうぞ。
+      </p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">お問い合わせフォーム &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== フッター ===== -->
+</div>
+<div id="page-staff" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a>
+    <a href="#service" class="mobile-nav__link">サービス</a>
+    <a href="#staff" class="mobile-nav__link">スタッフ</a>
+    <a href="#guide" class="mobile-nav__link">ご利用案内</a>
+    <a href="#medical" class="mobile-nav__link">医療機関の方</a>
+    <a href="#column" class="mobile-nav__link">コラム</a>
+    <a href="#company" class="mobile-nav__link">会社情報</a>
+    <a href="#recruit" class="mobile-nav__link">採用</a>
+    <a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <!-- ページヘッダー -->
+  <section class="page-header">
+    <h1 class="page-header__title">スタッフ紹介</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; スタッフ紹介</p>
+  </section>
+
+  <!-- スタッフ紹介 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">私たちが伺います</h2>
+      <p class="section-subtitle fade-in">経験豊富な看護師が、あなたの暮らしに寄り添います</p>
+
+      <div class="card-grid card-grid--2">
+        <!-- スタッフ1 -->
+        <div class="staff-card fade-in delay-1">
+          <div class="staff-card__photo">写真プレースホルダー</div>
+          <div class="staff-card__body">
+            <span class="staff-card__role">管理者 / 看護師</span>
+            <h3 class="staff-card__name">山田 花子</h3>
+            <p class="staff-card__qualifications">看護師 / 精神科認定看護師</p>
+            <p class="staff-card__message">
+              精神科病院で15年の経験を経て、訪問看護の世界に入りました。「その人らしい暮らし」を支えることが私の目標です。困ったことがあれば、どんな小さなことでもご相談ください。一緒に考えていきましょう。
+            </p>
+          </div>
+        </div>
+
+        <!-- スタッフ2 -->
+        <div class="staff-card fade-in delay-2">
+          <div class="staff-card__photo">写真プレースホルダー</div>
+          <div class="staff-card__body">
+            <span class="staff-card__role">看護師</span>
+            <h3 class="staff-card__name">佐藤 太郎</h3>
+            <p class="staff-card__qualifications">看護師 / 介護支援専門員</p>
+            <p class="staff-card__message">
+              総合病院の精神科病棟で8年勤務した後、もっと一人ひとりに時間をかけて関わりたいと思い、訪問看護に転向しました。ご利用者さまの笑顔が一番のやりがいです。趣味は釣りです。
+            </p>
+          </div>
+        </div>
+
+        <!-- スタッフ3 -->
+        <div class="staff-card fade-in delay-1">
+          <div class="staff-card__photo">写真プレースホルダー</div>
+          <div class="staff-card__body">
+            <span class="staff-card__role">看護師</span>
+            <h3 class="staff-card__name">鈴木 美咲</h3>
+            <p class="staff-card__qualifications">看護師 / 心理カウンセラー</p>
+            <p class="staff-card__message">
+              心理学を学んだ経験を活かし、心に寄り添うケアを大切にしています。不安な気持ちも、嬉しいことも、一緒に分かち合えたら嬉しいです。休日はパン屋さん巡りをしています。
+            </p>
+          </div>
+        </div>
+
+        <!-- スタッフ4 -->
+        <div class="staff-card fade-in delay-2">
+          <div class="staff-card__photo">写真プレースホルダー</div>
+          <div class="staff-card__body">
+            <span class="staff-card__role">看護師</span>
+            <h3 class="staff-card__name">田中 健太</h3>
+            <p class="staff-card__qualifications">看護師 / 認知症ケア専門士</p>
+            <p class="staff-card__message">
+              訪問看護歴5年。認知症ケアの専門知識を活かしながら、精神科看護にも力を入れています。ご利用者さまが安心して過ごせるよう、丁寧な関わりを心がけています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- チームの特徴 -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">チームの強み</h2>
+      <p class="section-subtitle fade-in">スタッフ一人ひとりの専門性を活かしたチームケア</p>
+
+      <div class="card-grid">
+        <div class="card fade-in delay-1">
+          <div class="card__icon">&#128218;</div>
+          <h3 class="card__title">定期的な研修・勉強会</h3>
+          <p class="card__text">月1回のケースカンファレンスに加え、外部研修にも積極的に参加。最新の知見を取り入れたケアを提供します。</p>
+        </div>
+        <div class="card fade-in delay-2">
+          <div class="card__icon">&#129309;</div>
+          <h3 class="card__title">多職種連携</h3>
+          <p class="card__text">主治医・ケアマネジャー・相談支援専門員など、関係機関と密に連携。包括的なサポート体制を構築します。</p>
+        </div>
+        <div class="card fade-in delay-3">
+          <div class="card__icon">&#128172;</div>
+          <h3 class="card__title">風通しの良い職場</h3>
+          <p class="card__text">少人数だからこそ、スタッフ同士の情報共有がスムーズ。困ったことはすぐに相談できる環境です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">一緒に働きませんか？</h2>
+      <p class="cta-section__text fade-in delay-1">アウル訪問看護ステーションでは、新しい仲間を募集しています。</p>
+      <div class="fade-in delay-2">
+        <a href="#recruit" class="btn btn--white">採用情報を見る &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-guide" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <!-- ページヘッダー -->
+  <section class="page-header">
+    <h1 class="page-header__title">ご利用案内</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; ご利用案内</p>
+  </section>
+
+  <!-- 利用の流れ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">ご利用の流れ</h2>
+      <p class="section-subtitle fade-in">お問い合わせからサービス開始までの流れをご案内します</p>
+
+      <div class="steps">
+        <div class="step fade-in delay-1">
+          <div class="step__number">1</div>
+          <div class="step__content">
+            <h3 class="step__title">お問い合わせ・ご相談</h3>
+            <p class="step__text">まずはお電話またはお問い合わせフォームからお気軽にご連絡ください。ご本人・ご家族・医療機関・ケアマネジャーの方など、どなたからのご相談も受け付けています。</p>
+          </div>
+        </div>
+
+        <div class="step fade-in delay-2">
+          <div class="step__number">2</div>
+          <div class="step__content">
+            <h3 class="step__title">主治医への相談・訪問看護指示書の発行</h3>
+            <p class="step__text">訪問看護を利用するには、主治医からの「訪問看護指示書」が必要です。主治医にご相談いただくか、当ステーションから主治医に連絡することも可能です。</p>
+          </div>
+        </div>
+
+        <div class="step fade-in delay-3">
+          <div class="step__number">3</div>
+          <div class="step__content">
+            <h3 class="step__title">初回面談・アセスメント</h3>
+            <p class="step__text">ご自宅に伺い、ご本人の状態やご希望、生活環境などを確認させていただきます。ケアの内容や訪問頻度、曜日・時間帯などをご相談の上決定します。</p>
+          </div>
+        </div>
+
+        <div class="step fade-in delay-4">
+          <div class="step__number">4</div>
+          <div class="step__content">
+            <h3 class="step__title">訪問看護計画書の作成</h3>
+            <p class="step__text">アセスメントに基づき、個別の訪問看護計画書を作成します。ご本人・ご家族にご説明し、同意をいただいた上でサービスを開始します。</p>
+          </div>
+        </div>
+
+        <div class="step fade-in delay-5">
+          <div class="step__number">5</div>
+          <div class="step__content">
+            <h3 class="step__title">サービス開始</h3>
+            <p class="step__text">計画に基づき、定期的にご自宅を訪問します。状態の変化に応じて計画の見直しも随時行います。安心してお任せください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 保険制度 -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">利用できる保険制度</h2>
+      <p class="section-subtitle fade-in">訪問看護は医療保険・介護保険で利用できます</p>
+
+      <div class="card-grid card-grid--2">
+        <div class="card fade-in delay-1">
+          <div class="card__icon">&#127973;</div>
+          <h3 class="card__title">医療保険</h3>
+          <p class="card__text">
+            精神科訪問看護は主に医療保険で利用されます。主治医の訪問看護指示書があれば、年齢を問わず利用可能です。<br><br>
+            <strong>対象となる方:</strong><br>
+            ・精神疾患をお持ちの方<br>
+            ・40歳未満の方<br>
+            ・要介護認定を受けていない方<br>
+            ・医師が必要と認めた方<br><br>
+            <strong>自己負担:</strong> 1割〜3割（所得・年齢による）<br>
+            <strong>自立支援医療制度:</strong> 利用すると自己負担が1割に軽減されます
+          </p>
+        </div>
+
+        <div class="card fade-in delay-2">
+          <div class="card__icon">&#128106;</div>
+          <h3 class="card__title">介護保険</h3>
+          <p class="card__text">
+            65歳以上で要介護認定を受けている方、または40〜64歳で特定疾病に該当する方が利用できます。<br><br>
+            <strong>対象となる方:</strong><br>
+            ・要支援1〜2、要介護1〜5の認定を受けた方<br>
+            ・ケアプランに訪問看護が位置づけられた方<br><br>
+            <strong>自己負担:</strong> 1割〜3割（所得による）<br>
+            <strong>注意:</strong> 精神科訪問看護指示書による場合は医療保険が優先されます
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金シミュレーション -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">料金シミュレーション</h2>
+      <p class="section-subtitle fade-in">おおよその自己負担額を計算できます（概算）</p>
+
+      <div class="simulator fade-in">
+        <div class="simulator__group">
+          <label class="simulator__label" for="insuranceType">保険の種類</label>
+          <select class="simulator__select" id="insuranceType">
+            <option value="medical">医療保険（精神科訪問看護）</option>
+            <option value="care">介護保険</option>
+          </select>
+        </div>
+
+        <div class="simulator__group">
+          <label class="simulator__label" for="burden">自己負担割合</label>
+          <select class="simulator__select" id="burden">
+            <option value="0.1">1割負担</option>
+            <option value="0.2">2割負担</option>
+            <option value="0.3" selected>3割負担</option>
+          </select>
+        </div>
+
+        <div class="simulator__group">
+          <label class="simulator__label" for="visits">月あたりの訪問回数</label>
+          <select class="simulator__select" id="visits">
+            <option value="4">週1回（月4回）</option>
+            <option value="8">週2回（月8回）</option>
+            <option value="12" selected>週3回（月12回）</option>
+          </select>
+        </div>
+
+        <div class="simulator__result" id="simulatorResult">
+          <p class="simulator__result-label">月あたりの概算自己負担額</p>
+          <p class="simulator__result-amount" id="resultAmount">---</p>
+          <p class="simulator__result-note">※ 上記は概算です。実際の金額は訪問時間・加算内容等により異なります。<br>※ 自立支援医療制度を利用の場合、自己負担が1割に軽減されます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--warm">
+    <div class="container">
+      <h2 class="section-title fade-in">よくあるご質問</h2>
+      <p class="section-subtitle fade-in">ご利用前に多くいただくご質問をまとめました</p>
+
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <div class="faq-question">訪問看護は誰でも利用できますか？</div>
+          <div class="faq-answer">
+            主治医から「訪問看護指示書」が発行されれば、どなたでも利用可能です。年齢制限はありません。まずはお気軽にご相談ください。主治医への相談が難しい場合は、当ステーションからご連絡することもできます。
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">どのくらいの頻度で訪問してもらえますか？</div>
+          <div class="faq-answer">
+            症状や生活状況に応じて、週1回〜3回程度の訪問が一般的です。状態が安定している場合は月2回程度のこともあります。ご利用者さまの状態に合わせて柔軟に対応いたします。
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">費用はどれくらいかかりますか？</div>
+          <div class="faq-answer">
+            保険の種類や自己負担割合により異なります。医療保険の場合、自立支援医療制度を利用すると自己負担が1割に軽減されます。上記の料金シミュレーションで概算をご確認いただけます。詳しくはお問い合わせください。
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">土日や祝日も訪問してもらえますか？</div>
+          <div class="faq-answer">
+            はい、365日対応しております。土日・祝日・年末年始も訪問可能です。また、緊急時の電話相談も24時間受け付けております。
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">家族も一緒に相談できますか？</div>
+          <div class="faq-answer">
+            もちろんです。ご家族のお悩みや不安にも寄り添います。ご家族のみでのご相談も受け付けておりますので、お気軽にお問い合わせください。
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">対応エリアはどこですか？</div>
+          <div class="faq-answer">
+            貝塚市を中心に、岸和田市、泉佐野市、熊取町、泉南市など泉州エリアに対応しています。エリア外でも対応可能な場合がありますので、お気軽にご相談ください。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">ご不明な点はお気軽にどうぞ</h2>
+      <p class="cta-section__text fade-in delay-1">ご利用に関するご質問・ご相談は、お電話またはフォームから承ります。</p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">お問い合わせ &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-service" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <!-- ページヘッダー -->
+  <section class="page-header">
+    <h1 class="page-header__title">サービス紹介</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; サービス紹介</p>
+  </section>
+
+  <!-- 訪問看護 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">訪問看護</h2>
+      <p class="section-subtitle fade-in">看護師がご自宅に伺い、心と体の健康をサポートします</p>
+
+      <div class="medical-feature fade-in">
+        <div class="medical-feature__img">イメージ写真プレースホルダー</div>
+        <div class="medical-feature__content">
+          <h3 class="medical-feature__title">精神科訪問看護</h3>
+          <p class="medical-feature__text">
+            当ステーションの中核サービスです。精神科での豊富な経験を持つ看護師が、ご自宅を定期的に訪問します。<br><br>
+            症状の観察、服薬管理、日常生活の支援、対人関係の相談、社会復帰に向けたサポートなど、ご利用者さま一人ひとりの状態に合わせたケアを提供します。
+          </p>
+        </div>
+      </div>
+
+      <h3 class="section-title fade-in" style="font-size: 1.3rem; margin-top: 40px;">主な支援内容</h3>
+      <div style="height: 24px;"></div>
+
+      <div class="card-grid">
+        <div class="card fade-in delay-1">
+          <div class="card__icon">&#128138;</div>
+          <h3 class="card__title">健康管理・症状の観察</h3>
+          <p class="card__text">バイタルチェック、精神症状の観察、体調変化の早期発見と主治医への報告を行います。</p>
+        </div>
+        <div class="card fade-in delay-2">
+          <div class="card__icon">&#128138;</div>
+          <h3 class="card__title">服薬管理・支援</h3>
+          <p class="card__text">処方薬の管理、服薬の確認・声かけ、副作用の観察を行い、安定した服薬を支援します。</p>
+        </div>
+        <div class="card fade-in delay-3">
+          <div class="card__icon">&#127968;</div>
+          <h3 class="card__title">日常生活の支援</h3>
+          <p class="card__text">食事、清潔、睡眠、買い物など、生活リズムの安定に向けた助言・支援を行います。</p>
+        </div>
+        <div class="card fade-in delay-1">
+          <div class="card__icon">&#128172;</div>
+          <h3 class="card__title">コミュニケーション支援</h3>
+          <p class="card__text">対人関係の悩み、不安や孤独感の軽減、傾聴を通じた心理的サポートを提供します。</p>
+        </div>
+        <div class="card fade-in delay-2">
+          <div class="card__icon">&#128106;</div>
+          <h3 class="card__title">ご家族への支援</h3>
+          <p class="card__text">ご家族の不安や負担の軽減、介護方法のアドバイス、社会資源の紹介を行います。</p>
+        </div>
+        <div class="card fade-in delay-3">
+          <div class="card__icon">&#127775;</div>
+          <h3 class="card__title">社会復帰に向けた支援</h3>
+          <p class="card__text">就労支援事業所やデイケアとの連携、社会参加に向けた段階的なサポートを行います。</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;" class="fade-in">
+        <a href="#guide" class="btn btn--primary">ご利用の流れを見る &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 関連サービス -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">関連サービス</h2>
+      <p class="section-subtitle fade-in">訪問看護以外にも、暮らしを支えるサービスを展開しています</p>
+
+      <div class="card-grid card-grid--2">
+        <div class="service-link-card fade-in delay-1">
+          <div class="service-link-card__icon">&#127803;</div>
+          <h3 class="service-link-card__title">生活介護事業</h3>
+          <p class="service-link-card__text">
+            障害をお持ちの方に、日中の活動の場を提供しています。創作活動、軽作業、レクリエーション、外出活動など、一人ひとりのペースに合わせたプログラムを実施。社会とのつながりを持ちながら、充実した日中を過ごせます。
+          </p>
+          <a href="#" class="btn btn--outline">詳しくはこちら &#8594;</a>
+        </div>
+
+        <div class="service-link-card fade-in delay-2">
+          <div class="service-link-card__icon">&#127969;</div>
+          <h3 class="service-link-card__title">グループホーム</h3>
+          <p class="service-link-card__text">
+            少人数制の共同生活住居で、世話人・生活支援員の見守りのもと、自立した生活を目指します。食事の提供、金銭管理の支援、通院の付き添いなど、安心して暮らせる環境を整えています。
+          </p>
+          <a href="#" class="btn btn--outline">グループホームHPへ &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 対応疾患 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">主な対応疾患</h2>
+      <p class="section-subtitle fade-in">幅広い精神疾患に対応しています</p>
+
+      <div class="tag-list fade-in" style="justify-content: center; gap: 12px; max-width: 700px; margin: 0 auto;">
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">統合失調症</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">うつ病</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">双極性障害</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">不安障害</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">パニック障害</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">PTSD</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">発達障害</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">適応障害</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">認知症</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">依存症</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">摂食障害</span>
+        <span class="tag" style="font-size: 0.9rem; padding: 8px 20px;">強迫性障害</span>
+      </div>
+
+      <p class="fade-in" style="text-align: center; margin-top: 24px; font-size: 0.9rem; color: var(--color-text-light);">
+        上記以外の疾患にも対応可能です。お気軽にご相談ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">サービスに関するご相談はお気軽に</h2>
+      <p class="cta-section__text fade-in delay-1">ご本人・ご家族・医療機関の方、どなたからのご相談も受け付けています。</p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">お問い合わせ &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-medical" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <section class="page-header">
+    <h1 class="page-header__title">医療機関の方へ</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; 医療機関の方へ</p>
+  </section>
+
+  <!-- 当ステーションの特徴 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">当ステーションの特徴</h2>
+      <p class="section-subtitle fade-in">精神科医療機関の皆さまとの連携を大切にしています</p>
+
+      <div class="medical-feature fade-in">
+        <div class="medical-feature__img">連携イメージ プレースホルダー</div>
+        <div class="medical-feature__content">
+          <h3 class="medical-feature__title">精神科に特化した訪問看護</h3>
+          <p class="medical-feature__text">
+            当ステーションは精神科訪問看護に特化しており、精神科病院・クリニックでの臨床経験が豊富な看護師が在籍しています。統合失調症、うつ病、双極性障害、不安障害など、幅広い精神疾患に対応可能です。<br><br>
+            退院直後の不安定な時期から、地域での安定した生活に至るまで、段階的なサポートを提供いたします。
+          </p>
+        </div>
+      </div>
+
+      <div class="medical-feature fade-in">
+        <div class="medical-feature__img">報告イメージ プレースホルダー</div>
+        <div class="medical-feature__content">
+          <h3 class="medical-feature__title">きめ細かな情報共有</h3>
+          <p class="medical-feature__text">
+            訪問ごとの記録を丁寧に行い、主治医への報告書を定期的にお送りします。状態の変化や気になる点があれば、速やかにご連絡いたします。<br><br>
+            FAX・電話・メールなど、医療機関のご都合に合わせた連絡方法に対応します。カンファレンスや退院前カンファレンスへの参加も可能です。
+          </p>
+        </div>
+      </div>
+
+      <div class="medical-feature fade-in">
+        <div class="medical-feature__img">365日対応イメージ プレースホルダー</div>
+        <div class="medical-feature__content">
+          <h3 class="medical-feature__title">365日対応・緊急時対応</h3>
+          <p class="medical-feature__text">
+            土日祝を含む365日対応で、ご利用者さまの安心を支えます。緊急時には電話での相談対応を行い、必要に応じて緊急訪問や受診同行も実施いたします。<br><br>
+            夜間・休日の急な状態変化にも迅速に対応できる体制を整えています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 対応疾患・処置 -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">対応疾患・実施可能な処置</h2>
+      <p class="section-subtitle fade-in">以下の疾患・処置に対応しています</p>
+
+      <div class="card-grid card-grid--2">
+        <div class="card fade-in delay-1">
+          <h3 class="card__title">対応疾患</h3>
+          <div class="tag-list" style="margin-top: 0;">
+            <span class="tag">統合失調症</span>
+            <span class="tag">うつ病</span>
+            <span class="tag">双極性障害</span>
+            <span class="tag">不安障害</span>
+            <span class="tag">パニック障害</span>
+            <span class="tag">PTSD</span>
+            <span class="tag">発達障害</span>
+            <span class="tag">適応障害</span>
+            <span class="tag">認知症</span>
+            <span class="tag">依存症</span>
+            <span class="tag">摂食障害</span>
+            <span class="tag">強迫性障害</span>
+            <span class="tag">高次脳機能障害</span>
+            <span class="tag">てんかん</span>
+          </div>
+        </div>
+
+        <div class="card fade-in delay-2">
+          <h3 class="card__title">主な看護内容</h3>
+          <div class="tag-list" style="margin-top: 0;">
+            <span class="tag">精神症状の観察・評価</span>
+            <span class="tag">服薬管理・支援</span>
+            <span class="tag">セルフケア支援</span>
+            <span class="tag">日常生活援助</span>
+            <span class="tag">家族支援・相談</span>
+            <span class="tag">社会資源の調整</span>
+            <span class="tag">危機介入</span>
+            <span class="tag">退院後のフォロー</span>
+            <span class="tag">就労支援との連携</span>
+            <span class="tag">心理教育</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ご依頼の流れ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">ご依頼の流れ</h2>
+      <p class="section-subtitle fade-in">お電話またはFAXにてお気軽にご連絡ください</p>
+
+      <div class="steps">
+        <div class="step fade-in delay-1">
+          <div class="step__number">1</div>
+          <div class="step__content">
+            <h3 class="step__title">お問い合わせ・ご依頼</h3>
+            <p class="step__text">お電話（072-000-0000）またはFAX（072-000-0001）にて、患者さまの情報をお知らせください。受け入れの可否を速やかにご連絡いたします。</p>
+          </div>
+        </div>
+        <div class="step fade-in delay-2">
+          <div class="step__number">2</div>
+          <div class="step__content">
+            <h3 class="step__title">訪問看護指示書の発行</h3>
+            <p class="step__text">「精神科訪問看護指示書」の発行をお願いいたします。指示書のフォーマットは当ステーションからもお送り可能です。</p>
+          </div>
+        </div>
+        <div class="step fade-in delay-3">
+          <div class="step__number">3</div>
+          <div class="step__content">
+            <h3 class="step__title">初回面談・アセスメント</h3>
+            <p class="step__text">退院前カンファレンスへの参加、または退院後の初回訪問にて、ご本人との面談・アセスメントを実施します。</p>
+          </div>
+        </div>
+        <div class="step fade-in delay-4">
+          <div class="step__number">4</div>
+          <div class="step__content">
+            <h3 class="step__title">訪問看護開始・報告</h3>
+            <p class="step__text">訪問看護計画書を作成し、サービスを開始します。定期的な報告書をお送りし、状態の変化があれば速やかにご連絡いたします。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ステーション情報 -->
+  <section class="section section--warm">
+    <div class="container">
+      <h2 class="section-title fade-in">ステーション情報</h2>
+      <p class="section-subtitle fade-in">ご連絡先・対応エリア</p>
+
+      <div class="card fade-in" style="max-width: 700px; margin: 0 auto;">
+        <table class="info-table">
+          <tr><th>事業所名</th><td>アウル訪問看護ステーション</td></tr>
+          <tr><th>所在地</th><td>〒597-0000 大阪府貝塚市○○町1-2-3</td></tr>
+          <tr><th>電話番号</th><td>072-000-0000</td></tr>
+          <tr><th>FAX番号</th><td>072-000-0001</td></tr>
+          <tr><th>管理者</th><td>山田 花子（看護師・精神科認定看護師）</td></tr>
+          <tr><th>スタッフ数</th><td>看護師4名</td></tr>
+          <tr><th>対応エリア</th><td>貝塚市、岸和田市、泉佐野市、熊取町、泉南市 ほか</td></tr>
+          <tr><th>営業時間</th><td>9:00〜18:00（365日対応）</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">患者さまのご紹介・ご相談をお待ちしています</h2>
+      <p class="cta-section__text fade-in delay-1">お電話・FAXにてお気軽にお問い合わせください。</p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">お問い合わせフォーム &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-company" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <section class="page-header">
+    <h1 class="page-header__title">会社情報</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; 会社情報</p>
+  </section>
+
+  <!-- 理念 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">理念</h2>
+      <div style="max-width: 700px; margin: 0 auto; text-align: center;" class="fade-in">
+        <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 20px; line-height: 1.6;">
+          「その人らしい暮らし」を、<br>地域とともに支える。
+        </p>
+        <p style="font-size: 0.95rem; color: var(--color-text-light); line-height: 2;">
+          私たちアウル訪問看護ステーションは、精神疾患をお持ちの方が住み慣れた地域で安心して暮らし続けられるよう、専門的な看護を提供します。フクロウのように静かに寄り添い、見守りながら、一人ひとりの「その人らしい暮らし」を支えることが私たちの使命です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 会社概要 -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">会社概要</h2>
+      <p class="section-subtitle fade-in"></p>
+
+      <div class="card fade-in" style="max-width: 800px; margin: 0 auto;">
+        <table class="info-table">
+          <tr><th>事業所名</th><td>アウル訪問看護ステーション</td></tr>
+          <tr><th>運営法人</th><td>合同会社○○（ダミー）</td></tr>
+          <tr><th>代表者</th><td>○○ ○○</td></tr>
+          <tr><th>管理者</th><td>山田 花子（看護師・精神科認定看護師）</td></tr>
+          <tr><th>所在地</th><td>〒597-0000 大阪府貝塚市○○町1-2-3</td></tr>
+          <tr><th>電話番号</th><td>072-000-0000</td></tr>
+          <tr><th>FAX番号</th><td>072-000-0001</td></tr>
+          <tr><th>メール</th><td>info@owl-nursing.example.com</td></tr>
+          <tr><th>設立</th><td>2025年○月</td></tr>
+          <tr><th>事業内容</th><td>訪問看護事業（精神科訪問看護）<br>生活介護事業<br>共同生活援助事業（グループホーム）</td></tr>
+          <tr><th>スタッフ数</th><td>看護師4名</td></tr>
+          <tr><th>営業時間</th><td>9:00〜18:00（365日対応）</td></tr>
+          <tr><th>指定番号</th><td>○○○○○○○○○○（ダミー）</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 対応エリア -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">対応エリア</h2>
+      <p class="section-subtitle fade-in">貝塚市を中心に、泉州エリアに対応しています</p>
+
+      <div class="fade-in" style="max-width: 700px; margin: 0 auto;">
+        <div class="area-badges" style="justify-content: center; margin-bottom: 24px;">
+          <span class="area-badge area-badge--primary">貝塚市（重点エリア）</span>
+          <span class="area-badge">岸和田市</span>
+          <span class="area-badge">泉佐野市</span>
+          <span class="area-badge">熊取町</span>
+          <span class="area-badge">泉南市</span>
+          <span class="area-badge">阪南市</span>
+          <span class="area-badge">泉大津市</span>
+          <span class="area-badge">和泉市</span>
+          <span class="area-badge">忠岡町</span>
+          <span class="area-badge">田尻町</span>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--color-text-muted);">
+          ※ 上記以外のエリアでも対応可能な場合がございます。お気軽にご相談ください。
+        </p>
+      </div>
+
+      <div class="map-placeholder fade-in" style="max-width: 700px; margin: 24px auto 0;">
+        Google Maps 埋め込みプレースホルダー
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section class="section section--warm">
+    <div class="container">
+      <h2 class="section-title fade-in">アクセス</h2>
+      <p class="section-subtitle fade-in"></p>
+
+      <div class="card-grid card-grid--2 fade-in" style="max-width: 800px; margin: 0 auto;">
+        <div class="card">
+          <div class="card__icon">&#128651;</div>
+          <h3 class="card__title">電車でお越しの方</h3>
+          <p class="card__text">
+            南海本線「貝塚駅」より徒歩10分<br>
+            水間鉄道「貝塚市役所前駅」より徒歩5分
+          </p>
+        </div>
+        <div class="card">
+          <div class="card__icon">&#128663;</div>
+          <h3 class="card__title">お車でお越しの方</h3>
+          <p class="card__text">
+            阪和自動車道「貝塚IC」より約5分<br>
+            駐車場あり（2台）
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">お気軽にお問い合わせください</h2>
+      <p class="cta-section__text fade-in delay-1">ご利用に関するご質問・ご相談をお待ちしております。</p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">お問い合わせ &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-column" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <section class="page-header">
+    <h1 class="page-header__title">コラム</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; コラム</p>
+  </section>
+
+  <!-- コラム一覧 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">スタッフブログ・お役立ち情報</h2>
+      <p class="section-subtitle fade-in">訪問看護や暮らしに役立つ情報をお届けします</p>
+
+      <!-- フィルター -->
+      <div class="column-filters fade-in">
+        <button class="column-filter is-active" data-filter="all">すべて</button>
+        <button class="column-filter" data-filter="精神科看護">精神科看護</button>
+        <button class="column-filter" data-filter="在宅ケア">在宅ケア</button>
+        <button class="column-filter" data-filter="制度解説">制度解説</button>
+        <button class="column-filter" data-filter="お知らせ">お知らせ</button>
+      </div>
+
+      <!-- 記事カード -->
+      <div class="card-grid" id="columnList">
+
+        <div class="column-card fade-in" data-label="在宅ケア">
+          <div class="column-card__thumb">サムネイル プレースホルダー</div>
+          <div class="column-card__body">
+            <span class="column-card__label">在宅ケア</span>
+            <p class="column-card__date">2026.02.28</p>
+            <h3 class="column-card__title">在宅での服薬管理のポイント ― 飲み忘れを防ぐ3つの工夫</h3>
+            <p class="column-card__excerpt">お薬の飲み忘れは在宅生活でよくあるお悩みのひとつです。今回は、簡単にできる服薬管理の工夫を3つご紹介します。お薬カレンダーの活用、アラームの設定、そして訪問看護師との連携について解説します。</p>
+          </div>
+        </div>
+
+        <div class="column-card fade-in" data-label="精神科看護">
+          <div class="column-card__thumb">サムネイル プレースホルダー</div>
+          <div class="column-card__body">
+            <span class="column-card__label">精神科看護</span>
+            <p class="column-card__date">2026.02.15</p>
+            <h3 class="column-card__title">「調子が悪い日」の過ごし方 ― 自分を責めないためのヒント</h3>
+            <p class="column-card__excerpt">精神疾患を抱えていると、調子の波があるのは自然なことです。調子が悪い日に無理をせず、自分を責めないための考え方や過ごし方のヒントをお伝えします。</p>
+          </div>
+        </div>
+
+        <div class="column-card fade-in" data-label="制度解説">
+          <div class="column-card__thumb">サムネイル プレースホルダー</div>
+          <div class="column-card__body">
+            <span class="column-card__label">制度解説</span>
+            <p class="column-card__date">2026.01.30</p>
+            <h3 class="column-card__title">自立支援医療制度とは？ ― 知っておきたい医療費の軽減制度</h3>
+            <p class="column-card__excerpt">精神科の通院や訪問看護の費用を軽減できる「自立支援医療制度」について、申請方法や対象となる方の条件をわかりやすく解説します。自己負担が3割から1割に軽減される重要な制度です。</p>
+          </div>
+        </div>
+
+        <div class="column-card fade-in" data-label="精神科看護">
+          <div class="column-card__thumb">サムネイル プレースホルダー</div>
+          <div class="column-card__body">
+            <span class="column-card__label">精神科看護</span>
+            <p class="column-card__date">2026.01.15</p>
+            <h3 class="column-card__title">ご家族の方へ ― 精神疾患のある方との関わり方のコツ</h3>
+            <p class="column-card__excerpt">ご家族が精神疾患を抱えている場合、どう接すればいいか悩むことも多いと思います。今回は、ご家族の方に知っていただきたい関わり方のポイントや、ご自身のケアの大切さについてお話しします。</p>
+          </div>
+        </div>
+
+        <div class="column-card fade-in" data-label="お知らせ">
+          <div class="column-card__thumb">サムネイル プレースホルダー</div>
+          <div class="column-card__body">
+            <span class="column-card__label">お知らせ</span>
+            <p class="column-card__date">2026.01.04</p>
+            <h3 class="column-card__title">新年のご挨拶と2026年の取り組みについて</h3>
+            <p class="column-card__excerpt">あけましておめでとうございます。本年もアウル訪問看護ステーションをよろしくお願いいたします。2026年は対応エリアの拡大やスタッフの増員など、サービスの充実を図ってまいります。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">お気軽にご相談ください</h2>
+      <p class="cta-section__text fade-in delay-1">訪問看護に関するご質問・ご相談はいつでも受け付けています。</p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">お問い合わせ &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-recruit" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <section class="page-header">
+    <h1 class="page-header__title">採用情報</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; 採用情報</p>
+  </section>
+
+  <!-- メッセージ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">一緒に働きませんか？</h2>
+      <p class="section-subtitle fade-in">あなたの経験と想いを、地域の暮らしに活かしてみませんか</p>
+
+      <div style="max-width: 700px; margin: 0 auto;" class="fade-in">
+        <div class="placeholder-img" style="height: 300px; margin-bottom: 32px;">チーム写真 プレースホルダー</div>
+        <p style="font-size: 0.95rem; color: var(--color-text-light); line-height: 2; text-align: center;">
+          アウル訪問看護ステーションは、精神科訪問看護に特化した小さなステーションです。<br>
+          まだ設立間もないステーションですが、だからこそ一人ひとりの意見が反映される職場です。<br>
+          「病院ではできなかった、もっと丁寧な関わりがしたい」<br>
+          「その人の生活に寄り添った看護がしたい」<br>
+          そんな想いをお持ちの方、ぜひ一緒に働きましょう。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 職場の魅力 -->
+  <section class="section section--bg">
+    <div class="container">
+      <h2 class="section-title fade-in">働く魅力</h2>
+      <p class="section-subtitle fade-in"></p>
+
+      <div style="display: flex; flex-direction: column; gap: 20px; max-width: 700px; margin: 0 auto;">
+        <div class="recruit-point fade-in delay-1">
+          <div class="recruit-point__icon">&#128197;</div>
+          <div class="recruit-point__content">
+            <h3 class="recruit-point__title">柔軟な働き方</h3>
+            <p class="recruit-point__text">直行直帰OK。訪問スケジュールに合わせた柔軟な勤務が可能です。お子さんの送り迎えなど、ライフスタイルに合わせた働き方を相談できます。</p>
+          </div>
+        </div>
+
+        <div class="recruit-point fade-in delay-2">
+          <div class="recruit-point__icon">&#128218;</div>
+          <div class="recruit-point__content">
+            <h3 class="recruit-point__title">研修・教育体制</h3>
+            <p class="recruit-point__text">訪問看護未経験の方も歓迎。先輩スタッフによる同行訪問から始め、徐々に一人で訪問できるようサポートします。外部研修の費用補助制度もあります。</p>
+          </div>
+        </div>
+
+        <div class="recruit-point fade-in delay-3">
+          <div class="recruit-point__icon">&#128172;</div>
+          <div class="recruit-point__content">
+            <h3 class="recruit-point__title">少人数だからこその風通し</h3>
+            <p class="recruit-point__text">スタッフ4名の小さなチーム。困ったことはすぐに相談でき、一人で抱え込むことはありません。月1回のカンファレンスで、チーム全体でケースを共有します。</p>
+          </div>
+        </div>
+
+        <div class="recruit-point fade-in delay-4">
+          <div class="recruit-point__icon">&#127775;</div>
+          <div class="recruit-point__content">
+            <h3 class="recruit-point__title">やりがいのある仕事</h3>
+            <p class="recruit-point__text">一人ひとりの生活に深く関わり、変化を間近で感じられる仕事です。ご利用者さまの「ありがとう」が何よりのモチベーションになります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 募集要項 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">募集要項</h2>
+      <p class="section-subtitle fade-in">現在、以下の職種を募集しています</p>
+
+      <div class="card fade-in" style="max-width: 800px; margin: 0 auto;">
+        <table class="info-table">
+          <tr><th>職種</th><td>看護師（正社員 / パート）</td></tr>
+          <tr><th>応募資格</th><td>看護師免許をお持ちの方<br>※ 精神科経験者歓迎、訪問看護未経験者も歓迎</td></tr>
+          <tr><th>仕事内容</th><td>精神科訪問看護業務全般<br>・利用者宅への訪問看護<br>・健康観察、服薬管理、生活支援<br>・訪問記録の作成<br>・カンファレンスへの参加</td></tr>
+          <tr><th>勤務地</th><td>アウル訪問看護ステーション（大阪府貝塚市）<br>※ 利用者宅への直行直帰可</td></tr>
+          <tr><th>勤務時間</th><td>9:00〜18:00（休憩60分）<br>※ パートは応相談</td></tr>
+          <tr><th>給与</th><td>【正社員】月給 280,000円〜350,000円（経験・能力による）<br>【パート】時給 1,800円〜2,200円<br>※ オンコール手当、交通費別途支給</td></tr>
+          <tr><th>休日</th><td>シフト制（月9日休み）<br>有給休暇、慶弔休暇あり</td></tr>
+          <tr><th>福利厚生</th><td>社会保険完備、交通費支給、車通勤可<br>研修費用補助、制服貸与</td></tr>
+          <tr><th>応募方法</th><td>お電話（072-000-0000）またはお問い合わせフォームよりご連絡ください。<br>履歴書をお送りいただき、面接日程を調整いたします。</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- スタッフの声 -->
+  <section class="section section--warm">
+    <div class="container">
+      <h2 class="section-title fade-in">先輩スタッフの声</h2>
+      <p class="section-subtitle fade-in"></p>
+
+      <div class="card-grid card-grid--2">
+        <div class="card fade-in delay-1">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #c8d8c8, #a8bca8); display: flex; align-items: center; justify-content: center; color: #7a9a7a; font-size: 0.7rem; flex-shrink: 0;">写真</div>
+            <div>
+              <strong style="color: var(--color-primary-dark);">佐藤 太郎</strong><br>
+              <span style="font-size: 0.8rem; color: var(--color-text-muted);">看護師 / 入職2年目</span>
+            </div>
+          </div>
+          <p class="card__text">
+            「病院では時間に追われて十分に関われないことが多かったですが、訪問看護では一人ひとりとじっくり向き合えます。ご利用者さまの生活の変化を直接感じられるのが大きなやりがいです。困ったときはすぐにチームに相談できるので、安心して働けています。」
+          </p>
+        </div>
+
+        <div class="card fade-in delay-2">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #c8d8c8, #a8bca8); display: flex; align-items: center; justify-content: center; color: #7a9a7a; font-size: 0.7rem; flex-shrink: 0;">写真</div>
+            <div>
+              <strong style="color: var(--color-primary-dark);">鈴木 美咲</strong><br>
+              <span style="font-size: 0.8rem; color: var(--color-text-muted);">看護師 / 入職1年目</span>
+            </div>
+          </div>
+          <p class="card__text">
+            「訪問看護は初めてで不安でしたが、先輩の同行訪問で丁寧に教えてもらえました。直行直帰ができるので、子どもの送り迎えにも対応でき、ワークライフバランスがとれています。小さなチームだからこそ、一人ひとりの意見が大切にされていると感じます。」
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title fade-in">まずは見学・お話からでも</h2>
+      <p class="cta-section__text fade-in delay-1">職場の雰囲気を見てみたい、話を聞いてみたいという方も大歓迎です。</p>
+      <div class="fade-in delay-2">
+        <a href="tel:072-000-0000" class="btn btn--white" style="margin-right: 12px;">&#9742; 072-000-0000</a>
+        <a href="#contact" class="btn btn--accent">応募・お問い合わせ &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-contact" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <section class="page-header">
+    <h1 class="page-header__title">お問い合わせ</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; お問い合わせ</p>
+  </section>
+
+  <!-- お問い合わせ方法 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">お問い合わせ方法</h2>
+      <p class="section-subtitle fade-in">お電話またはフォームからお気軽にご連絡ください</p>
+
+      <div class="card-grid card-grid--2" style="max-width: 700px; margin: 0 auto 48px;">
+        <div class="card fade-in delay-1" style="text-align: center;">
+          <div class="card__icon" style="margin: 0 auto 16px;">&#9742;</div>
+          <h3 class="card__title">お電話でのお問い合わせ</h3>
+          <p style="font-size: 1.5rem; font-weight: 900; color: var(--color-primary); margin: 12px 0;">072-000-0000</p>
+          <p class="card__text">
+            受付時間: 9:00〜18:00<br>
+            365日対応（緊急時は時間外も可）
+          </p>
+        </div>
+
+        <div class="card fade-in delay-2" style="text-align: center;">
+          <div class="card__icon" style="margin: 0 auto 16px;">&#128233;</div>
+          <h3 class="card__title">LINEでのお問い合わせ</h3>
+          <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #c8d8c8, #a8bca8); border-radius: var(--radius-md); margin: 12px auto; display: flex; align-items: center; justify-content: center; color: #7a9a7a; font-size: 0.8rem;">QRコード</div>
+          <p class="card__text">
+            LINEでもお気軽にご相談いただけます
+          </p>
+        </div>
+      </div>
+
+      <!-- フォーム -->
+      <h3 class="section-title fade-in" style="font-size: 1.3rem;">フォームからのお問い合わせ</h3>
+      <div style="height: 12px;"></div>
+      <p class="section-subtitle fade-in">以下のフォームに必要事項をご記入ください</p>
+
+      <div class="form-placeholder fade-in">
+        <div>
+          <p style="font-size: 1.2rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 16px;">Googleフォーム埋め込みエリア</p>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.8;">
+            ここにGoogleフォームのiframeが埋め込まれます。<br>
+            本番環境では以下のようなコードで埋め込みます：<br><br>
+            <code style="background: #f0f0f0; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">
+              &lt;iframe src="https://docs.google.com/forms/..." ...&gt;&lt;/iframe&gt;
+            </code>
+          </p>
+        </div>
+      </div>
+
+      <p class="fade-in" style="text-align: center; margin-top: 24px; font-size: 0.85rem; color: var(--color-text-muted);">
+        ※ 通常、2営業日以内にご返信いたします。<br>
+        ※ お急ぎの場合はお電話にてお問い合わせください。
+      </p>
+    </div>
+  </section>
+
+  <!-- 個人情報について -->
+  <section class="section section--bg">
+    <div class="container">
+      <div style="max-width: 700px; margin: 0 auto; text-align: center;" class="fade-in">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 12px;">個人情報の取り扱いについて</h3>
+        <p style="font-size: 0.85rem; color: var(--color-text-light); line-height: 1.8;">
+          お問い合わせにてお預かりした個人情報は、お問い合わせへの対応のみに使用し、その他の目的には一切使用いたしません。
+          詳しくは<a href="#privacy" style="text-decoration: underline;">プライバシーポリシー</a>をご覧ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<div id="page-privacy" class="page-section" style="display:none">
+<nav class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link">ホーム</a><a href="#service" class="mobile-nav__link">サービス</a><a href="#staff" class="mobile-nav__link">スタッフ</a><a href="#guide" class="mobile-nav__link">ご利用案内</a><a href="#medical" class="mobile-nav__link">医療機関の方</a><a href="#column" class="mobile-nav__link">コラム</a><a href="#company" class="mobile-nav__link">会社情報</a><a href="#recruit" class="mobile-nav__link">採用</a><a href="#contact" class="mobile-nav__link">お問い合わせ</a>
+    <a href="tel:072-000-0000" class="mobile-nav__phone"><span>&#9742;</span> 072-000-0000</a>
+  </nav>
+
+  <div class="page-top-spacer"></div>
+
+  <section class="page-header">
+    <h1 class="page-header__title">プライバシーポリシー</h1>
+    <p class="page-header__breadcrumb"><a href="#home">ホーム</a> &#8250; プライバシーポリシー</p>
+  </section>
+
+  <!-- プライバシーポリシー本文 -->
+  <section class="section">
+    <div class="container">
+      <div class="privacy-content fade-in">
+        <p>
+          アウル訪問看護ステーション（以下「当ステーション」）は、ご利用者さまの個人情報の重要性を認識し、個人情報の保護に関する法律（個人情報保護法）およびその他の関連法令を遵守し、以下のとおりプライバシーポリシーを定め、適切な取り扱いに努めます。
+        </p>
+
+        <h2>1. 個人情報の定義</h2>
+        <p>
+          本ポリシーにおいて「個人情報」とは、個人情報保護法に定める個人情報を指し、生存する個人に関する情報であって、氏名、生年月日、住所、電話番号、メールアドレスその他の記述等により特定の個人を識別できるもの、または個人識別符号が含まれるものをいいます。
+        </p>
+
+        <h2>2. 個人情報の収集</h2>
+        <p>当ステーションは、以下の場合に個人情報を収集することがあります。</p>
+        <ul>
+          <li>訪問看護サービスのお申し込み・ご利用時</li>
+          <li>お問い合わせフォームやお電話でのご相談時</li>
+          <li>採用へのご応募時</li>
+          <li>その他、当ステーションのサービス提供に必要な場合</li>
+        </ul>
+
+        <h2>3. 個人情報の利用目的</h2>
+        <p>当ステーションは、収集した個人情報を以下の目的で利用いたします。</p>
+        <ul>
+          <li>訪問看護サービスの提供およびそれに付随する業務</li>
+          <li>ご利用者さまの健康管理および安全確保</li>
+          <li>主治医、ケアマネジャー等の関係機関との連携</li>
+          <li>診療報酬・介護報酬の請求</li>
+          <li>お問い合わせへの対応</li>
+          <li>採用選考および連絡</li>
+          <li>サービスの品質向上のための統計分析（個人を特定しない形で）</li>
+        </ul>
+
+        <h2>4. 個人情報の第三者提供</h2>
+        <p>
+          当ステーションは、以下の場合を除き、ご本人の同意なく個人情報を第三者に提供いたしません。
+        </p>
+        <ul>
+          <li>法令に基づく場合</li>
+          <li>人の生命、身体または財産の保護のために必要がある場合</li>
+          <li>公衆衛生の向上または児童の健全な育成の推進のために必要がある場合</li>
+          <li>主治医、ケアマネジャー等の関係機関とのサービス提供に必要な連携の場合（ご利用開始時に同意をいただきます）</li>
+        </ul>
+
+        <h2>5. 個人情報の安全管理</h2>
+        <p>
+          当ステーションは、個人情報の漏えい、紛失、改ざんおよび不正アクセス等を防止するため、必要かつ適切な安全管理措置を講じます。また、スタッフに対して個人情報の適切な取り扱いに関する教育を実施いたします。
+        </p>
+
+        <h2>6. 個人情報の開示・訂正・削除</h2>
+        <p>
+          ご本人から個人情報の開示、訂正、追加、削除、利用停止等のご請求があった場合、ご本人確認を行った上で、合理的な期間および範囲で対応いたします。
+        </p>
+
+        <h2>7. Cookieの使用について</h2>
+        <p>
+          当ステーションのウェブサイトでは、利便性の向上やアクセス解析のためにCookieを使用する場合があります。Cookieの使用により個人を特定する情報を取得することはありません。ブラウザの設定によりCookieを無効にすることも可能です。
+        </p>
+
+        <h2>8. 本ポリシーの変更</h2>
+        <p>
+          当ステーションは、法令の改正やサービス内容の変更等に応じて、本ポリシーを変更することがあります。変更後のポリシーは、当ウェブサイトに掲載した時点から効力を生じるものとします。
+        </p>
+
+        <h2>9. お問い合わせ窓口</h2>
+        <p>
+          個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。
+        </p>
+        <p>
+          <strong>アウル訪問看護ステーション</strong><br>
+          〒597-0000 大阪府貝塚市○○町1-2-3<br>
+          TEL: 072-000-0000<br>
+          メール: info@owl-nursing.example.com
+        </p>
+
+        <p style="margin-top: 40px; text-align: right; color: var(--color-text-muted); font-size: 0.85rem;">
+          制定日: 2025年○月○日<br>
+          最終改定日: 2026年○月○日
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+</div>
+<footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__logo">
+          <svg class="owl-icon--sm" width="24" height="24" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="48" r="38" fill="#8fd4b8"/>
+            <circle cx="38" cy="42" r="10" fill="#fff"/>
+            <circle cx="62" cy="42" r="10" fill="#fff"/>
+            <circle cx="40" cy="41" r="4" fill="#4a9e7a"/>
+            <circle cx="64" cy="41" r="4" fill="#4a9e7a"/>
+            <path d="M46 56 L50 61 L54 56" fill="#e07a3a"/>
+          </svg>
+          アウル訪問看護ステーション
+        </div>
+        <div class="footer__info">
+          〒597-0000 大阪府貝塚市○○町1-2-3<br>
+          TEL: 072-000-0000 / FAX: 072-000-0001<br>
+          営業時間: 9:00〜18:00（365日対応）
+        </div>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" title="LINE">LINE</a>
+          <a href="#" class="footer__social-link" title="Instagram">Insta</a>
+          <a href="#" class="footer__social-link" title="グループホームHP">GH</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer__heading">サービス</h4>
+        <nav class="footer__nav">
+          <a href="#service">訪問看護</a>
+          <a href="#service">生活介護</a>
+          <a href="#service">グループホーム</a>
+          <a href="#guide">ご利用案内</a>
+          <a href="#medical">医療機関の方へ</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4 class="footer__heading">情報</h4>
+        <nav class="footer__nav">
+          <a href="#staff">スタッフ紹介</a>
+          <a href="#column">コラム</a>
+          <a href="#company">会社情報</a>
+          <a href="#recruit">採用情報</a>
+          <a href="#contact">お問い合わせ</a>
+          <a href="#privacy">プライバシーポリシー</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 アウル訪問看護ステーション All Rights Reserved.
+    </div>
+  </footer>
+<script>
+(function() {
+  'use strict';
+
+  /* =========================================
+     アウル訪問看護ステーション - 統合スクリプト
+     ========================================= */
+
+  // --- (a) SPA Router ---
+  function navigateTo(hash) {
+    hash = hash || 'home';
+
+    // ページ切り替え
+    document.querySelectorAll('.page-section').forEach(function(p) {
+      p.style.display = 'none';
+    });
+    var target = document.getElementById('page-' + hash);
+    if (target) {
+      target.style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    // デスクトップナビのアクティブ状態
+    document.querySelectorAll('.nav__link').forEach(function(link) {
+      link.classList.remove('nav__link--active');
+      if (link.getAttribute('href') === '#' + hash) {
+        link.classList.add('nav__link--active');
+      }
+    });
+
+    // メニューを閉じる
+    closeMenu();
+
+    // IntersectionObserver再初期化（表示セクション内の要素のみ）
+    initObserver(target);
+  }
+
+  function closeMenu() {
+    var hamburger = document.getElementById('hamburger');
+    // mobileNavはページごとに重複IDがあるので全て取得
+    var mobileNavs = document.querySelectorAll('.mobile-nav');
+    if (hamburger) hamburger.classList.remove('is-active');
+    mobileNavs.forEach(function(nav) {
+      nav.classList.remove('is-open');
+    });
+    document.body.style.overflow = '';
+  }
+
+  // ハッシュリンクのクリックハンドラ（イベント委譲）
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (a) {
+      e.preventDefault();
+      var h = a.getAttribute('href').substring(1);
+      if (h) {
+        window.location.hash = h;
+      }
+    }
+  });
+
+  window.addEventListener('hashchange', function() {
+    navigateTo(window.location.hash.substring(1));
+  });
+
+  // --- (b) ハンバーガーメニュー ---
+  function initHamburger() {
+    var hamburger = document.getElementById('hamburger');
+    if (!hamburger) return;
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('is-active');
+      // 現在表示中のページセクション内のmobileNavを対象にする
+      var activeSection = document.querySelector('.page-section[style*="display:block"], .page-section[style*="display: block"]');
+      var mobileNav = activeSection ? activeSection.querySelector('.mobile-nav') : document.querySelector('.mobile-nav');
+      if (mobileNav) {
+        mobileNav.classList.toggle('is-open');
+        document.body.style.overflow = mobileNav.classList.contains('is-open') ? 'hidden' : '';
+      }
+    });
+  }
+
+  // --- (c) IntersectionObserver ---
+  var observer = null;
+
+  function initObserver(container) {
+    // 前のobserverを破棄
+    if (observer) {
+      observer.disconnect();
+    }
+
+    observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    var scope = container || document;
+    scope.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(function(el) {
+      // リセットして再監視
+      el.classList.remove('is-visible');
+      observer.observe(el);
+    });
+  }
+
+  // --- (d) コラム絞り込み ---
+  function initColumnFilters() {
+    var filters = document.querySelectorAll('.column-filter');
+    var cards = document.querySelectorAll('.column-card');
+    if (filters.length === 0) return;
+
+    filters.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        // ボタンのアクティブ切り替え
+        filters.forEach(function(f) { f.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+
+        var filter = btn.dataset.filter;
+
+        cards.forEach(function(card) {
+          if (filter === 'all' || card.dataset.label === filter) {
+            card.style.display = '';
+            // 再アニメーション
+            card.classList.remove('is-visible');
+            setTimeout(function() { card.classList.add('is-visible'); }, 50);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // --- (e) 料金シミュレーション ---
+  function initSimulator() {
+    var insuranceType = document.getElementById('insuranceType');
+    var burden = document.getElementById('burden');
+    var visits = document.getElementById('visits');
+    var resultAmount = document.getElementById('resultAmount');
+
+    if (!insuranceType || !burden || !visits || !resultAmount) return;
+
+    function calculate() {
+      var type = insuranceType.value;
+      var burdenRate = parseFloat(burden.value);
+      var visitCount = parseInt(visits.value, 10);
+
+      var basePerVisit;
+      if (type === 'medical') {
+        // 精神科訪問看護基本療養費（30分以上）: 約5,550円
+        basePerVisit = 5550;
+      } else {
+        // 介護保険 訪問看護（30分以上1時間未満）: 約8,210円（1単位10円換算）
+        basePerVisit = 8210;
+      }
+
+      var total = Math.round(basePerVisit * visitCount * burdenRate);
+      resultAmount.textContent = '約 ' + total.toLocaleString() + ' 円/月';
+    }
+
+    insuranceType.addEventListener('change', calculate);
+    burden.addEventListener('change', calculate);
+    visits.addEventListener('change', calculate);
+
+    // 初期計算
+    calculate();
+  }
+
+  // --- (f) FAQアコーディオン ---
+  function initFAQ() {
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      q.addEventListener('click', function() {
+        var item = q.parentElement;
+        var isOpen = item.classList.contains('is-open');
+        // 全部閉じる
+        document.querySelectorAll('.faq-item').forEach(function(i) {
+          i.classList.remove('is-open');
+        });
+        // クリックしたものだけ開く/閉じる
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+  }
+
+  // --- 初期化 ---
+  document.addEventListener('DOMContentLoaded', function() {
+    initHamburger();
+    initColumnFilters();
+    initSimulator();
+    initFAQ();
+
+    // 初期ページ表示
+    var hash = window.location.hash.substring(1);
+    navigateTo(hash || 'home');
+  });
+
+})();
+</script>
+</body>
+</html>

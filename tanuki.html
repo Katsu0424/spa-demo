@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アウル訪問看護ステーション</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Maru Gothic',sans-serif;
+  color:#5a4a3a;
+  background-color:#fdf8f0;
+  line-height:1.8;
+  overflow-x:hidden;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='220' viewBox='0 0 140 220'%3E%3Cg transform='rotate(-30 70 110)' opacity='0.04'%3E%3Cellipse cx='70' cy='60' rx='20' ry='75' fill='%238B6914'/%3E%3Cellipse cx='70' cy='60' rx='15' ry='75' fill='%23a07828'/%3E%3Crect x='57' y='-5' width='26' height='11' rx='5' fill='%234a3520' opacity='0.7'/%3E%3Crect x='57' y='16' width='26' height='11' rx='5' fill='%234a3520' opacity='0.7'/%3E%3Crect x='57' y='37' width='26' height='11' rx='5' fill='%234a3520' opacity='0.7'/%3E%3Crect x='57' y='58' width='26' height='11' rx='5' fill='%234a3520' opacity='0.7'/%3E%3Crect x='57' y='79' width='26' height='11' rx='5' fill='%234a3520' opacity='0.7'/%3E%3Crect x='57' y='100' width='26' height='11' rx='5' fill='%234a3520' opacity='0.5'/%3E%3Cellipse cx='70' cy='135' rx='12' ry='10' fill='%238B6914' opacity='0.7'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:repeat;
+}
+a{color:#c07830;text-decoration:none;transition:color .3s}
+a:hover{color:#e89840}
+ul{list-style:none}
+img{max-width:100%;height:auto}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes wobble{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes wave{0%,100%{transform:rotate(0deg)}50%{transform:rotate(20deg)}}
+@keyframes pawWalk{0%{left:-60px;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% + 60px);opacity:0}}
+@keyframes peekIn{from{transform:translateX(-20px) scale(0.8);opacity:0}to{transform:translateX(0) scale(1);opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.fade-in{opacity:0;animation:fadeInUp .8s ease forwards}
+.fade-in.visible{opacity:1}
+.tanuki-wobble{animation:wobble 2s ease-in-out infinite}
+.tanuki-float{animation:float 3s ease-in-out infinite}
+.tanuki-bounce:hover{animation:bounce .5s ease}
+
+.paw-divider{display:flex;justify-content:center;align-items:center;gap:24px;padding:30px 0}
+.paw-divider svg{opacity:0.5;transition:transform .3s}
+.paw-divider svg:hover{transform:scale(1.2) rotate(10deg)}
+
+.site-header{background:linear-gradient(135deg,#fef6e8 0%,#fdebd0 100%);border-bottom:3px solid #e8c07a;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(139,105,20,0.08)}
+.header-top{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:10px 20px}
+.logo-area{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-area h1{font-size:1.3rem;color:#8B6914;font-weight:900;line-height:1.3}
+.logo-area h1 small{display:block;font-size:0.7rem;font-weight:500;color:#a08040}
+.header-phone{display:flex;align-items:center;gap:8px;background:#fff8ee;border:2px solid #e8c07a;border-radius:40px;padding:6px 18px;font-weight:700;color:#8B6914;font-size:0.9rem}
+.header-phone .badge-365{background:#e8833a;color:#fff;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:700}
+nav.main-nav{background:#8B6914}
+nav.main-nav ul{display:flex;justify-content:center;flex-wrap:wrap;max-width:1200px;margin:0 auto}
+nav.main-nav ul li a{display:block;padding:10px 16px;color:#fff;font-size:0.85rem;font-weight:700;transition:background .3s}
+nav.main-nav ul li a:hover,nav.main-nav ul li a.active{background:#a07828;color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:10px;background:none;border:none}
+.hamburger span{display:block;width:28px;height:3px;background:#8B6914;border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+.page-section{display:none;min-height:60vh}
+.page-section.active{display:block}
+.container{max-width:1100px;margin:0 auto;padding:40px 20px}
+.section-title{display:flex;align-items:center;gap:12px;font-size:1.8rem;color:#8B6914;font-weight:900;margin-bottom:32px;padding-bottom:12px;border-bottom:3px dashed #e8c07a}
+
+.hero{background:linear-gradient(135deg,#fef6e8 0%,#fdecd2 50%,#fce0b8 100%);text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden}
+.hero h2{font-size:2rem;color:#8B6914;font-weight:900;margin:20px 0 10px;line-height:1.4}
+.hero p{font-size:1.1rem;color:#a08040;max-width:600px;margin:0 auto 30px}
+.hero-tanuki{max-width:280px;margin:0 auto}
+.hero-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:20px}
+.hero-badge{background:#fff;border:2px solid #e8c07a;border-radius:40px;padding:8px 20px;font-weight:700;color:#8B6914;font-size:0.9rem;box-shadow:0 2px 8px rgba(139,105,20,0.1)}
+
+.strengths{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:30px}
+.strength-card{background:#fff;border-radius:20px;padding:30px;text-align:center;border:2px solid #f0e0c0;box-shadow:0 4px 16px rgba(139,105,20,0.06);transition:transform .3s,box-shadow .3s;position:relative}
+.strength-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(139,105,20,0.12)}
+.strength-card h3{font-size:1.2rem;color:#8B6914;margin:12px 0 8px}
+.strength-card p{font-size:0.9rem;color:#7a6a5a}
+
+.news-list li{padding:16px 0;border-bottom:1px dashed #e8d8c0;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.news-date{color:#c09840;font-weight:700;font-size:0.85rem;white-space:nowrap}
+.news-label{font-size:0.7rem;padding:2px 10px;border-radius:10px;font-weight:700;color:#fff;white-space:nowrap}
+.label-info{background:#e8833a}
+.label-column{background:#8B6914}
+.label-recruit{background:#c07830}
+
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.staff-card{background:#fff;border-radius:20px;overflow:visible;border:2px solid #f0e0c0;box-shadow:0 4px 12px rgba(139,105,20,0.06);transition:transform .3s;position:relative;margin-top:18px}
+.staff-card:hover{transform:translateY(-4px)}
+.staff-card .ear-deco{position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:2}
+.staff-photo{width:100%;height:200px;background:#f5e8d4;display:flex;align-items:center;justify-content:center;color:#c0a878;font-size:0.9rem;border-radius:18px 18px 0 0}
+.staff-info{padding:20px;text-align:center}
+.staff-info h3{color:#8B6914;font-size:1.1rem;margin-bottom:4px}
+.staff-info .role{color:#c09840;font-size:0.8rem;font-weight:700;margin-bottom:8px}
+.staff-info p{font-size:0.85rem;color:#7a6a5a}
+
+.flow-steps{display:flex;flex-direction:column;gap:20px}
+.flow-step{display:flex;align-items:flex-start;gap:20px;background:#fff;border-radius:16px;padding:24px;border:2px solid #f0e0c0}
+.flow-num{flex-shrink:0;width:48px;height:48px;background:#8B6914;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900}
+.flow-step h3{color:#8B6914;font-size:1.05rem;margin-bottom:4px}
+.flow-step p{font-size:0.9rem;color:#7a6a5a}
+
+.insurance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:20px}
+.insurance-card{background:#fff;border-radius:16px;padding:24px;border:2px solid #f0e0c0}
+.insurance-card h3{color:#8B6914;font-size:1.1rem;margin-bottom:12px;padding-bottom:8px;border-bottom:2px dashed #e8c07a}
+.insurance-card ul{padding-left:20px}
+.insurance-card ul li{font-size:0.9rem;margin-bottom:6px;position:relative}
+.insurance-card ul li::before{content:"";position:absolute;left:-16px;top:8px;width:8px;height:8px;background:#e8c07a;border-radius:50%}
+
+.simulator{background:#fff;border-radius:20px;padding:30px;border:2px solid #e8c07a;margin-top:20px}
+.simulator h3{color:#8B6914;margin-bottom:16px}
+.sim-row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;align-items:center}
+.sim-row label{font-weight:700;color:#8B6914;font-size:0.9rem;min-width:120px}
+.sim-row select,.sim-row input{padding:8px 12px;border:2px solid #e8c07a;border-radius:10px;font-family:'Zen Maru Gothic',sans-serif;font-size:0.95rem;color:#5a4a3a;background:#fef9f0}
+.sim-result{background:#fef6e8;border-radius:12px;padding:20px;margin-top:16px;text-align:center;font-size:1.3rem;font-weight:900;color:#8B6914}
+
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.faq-item{background:#fff;border-radius:14px;border:2px solid #f0e0c0;overflow:hidden}
+.faq-q{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:700;color:#8B6914;font-size:0.95rem;transition:background .3s}
+.faq-q:hover{background:#fef6e8}
+.faq-q .faq-tanuki{transition:transform .3s;flex-shrink:0;margin-left:12px}
+.faq-item.open .faq-q .faq-tanuki{transform:scale(1.15)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;padding:0 20px;font-size:0.9rem;color:#7a6a5a}
+.faq-item.open .faq-a{max-height:400px;padding:0 20px 16px}
+
+.service-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{background:#fff;border-radius:20px;padding:30px;border:2px solid #f0e0c0;box-shadow:0 4px 12px rgba(139,105,20,0.06)}
+.service-card h3{color:#8B6914;font-size:1.2rem;margin-bottom:12px}
+.service-card p{font-size:0.9rem;color:#7a6a5a;margin-bottom:12px}
+.service-card ul{padding-left:20px}
+.service-card ul li{font-size:0.85rem;margin-bottom:4px}
+
+.medical-section{margin-bottom:30px}
+.medical-section h3{color:#8B6914;font-size:1.2rem;margin-bottom:16px}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tag{background:#fef6e8;border:1px solid #e8c07a;border-radius:20px;padding:4px 14px;font-size:0.85rem;color:#8B6914;font-weight:500}
+
+.company-table{width:100%;border-collapse:collapse;margin-bottom:30px}
+.company-table th,.company-table td{padding:14px 16px;text-align:left;border-bottom:1px dashed #e8d8c0;font-size:0.9rem}
+.company-table th{color:#8B6914;font-weight:700;width:160px;background:#fef9f0}
+.area-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.area-tag{background:#fff;border:2px solid #e8c07a;border-radius:20px;padding:6px 16px;font-size:0.85rem;color:#8B6914;font-weight:700}
+
+.column-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.column-filter{padding:6px 16px;border-radius:20px;border:2px solid #e8c07a;background:#fff;color:#8B6914;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all .3s;font-family:'Zen Maru Gothic',sans-serif}
+.column-filter.active,.column-filter:hover{background:#8B6914;color:#fff;border-color:#8B6914}
+.column-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.column-card{background:#fff;border-radius:16px;overflow:hidden;border:2px solid #f0e0c0;transition:transform .3s}
+.column-card:hover{transform:translateY(-4px)}
+.column-thumb{height:160px;background:#f5e8d4;display:flex;align-items:center;justify-content:center;color:#c0a878;font-size:0.85rem}
+.column-body{padding:16px}
+.column-body .col-label{font-size:0.7rem;padding:2px 10px;border-radius:10px;font-weight:700;color:#fff;display:inline-block;margin-bottom:8px}
+.column-body h3{font-size:1rem;color:#5a4a3a;margin-bottom:6px}
+.column-body .col-date{font-size:0.8rem;color:#b0a090}
+
+.recruit-card{background:#fff;border-radius:20px;padding:30px;border:2px solid #f0e0c0;margin-bottom:24px}
+.recruit-card h3{color:#8B6914;font-size:1.2rem;margin-bottom:16px}
+.recruit-table{width:100%;border-collapse:collapse}
+.recruit-table th,.recruit-table td{padding:12px 14px;text-align:left;border-bottom:1px dashed #e8d8c0;font-size:0.9rem}
+.recruit-table th{color:#8B6914;font-weight:700;width:140px;background:#fef9f0}
+
+.contact-box{background:#fff;border-radius:20px;padding:40px;text-align:center;border:2px solid #f0e0c0}
+.contact-box p{margin-bottom:16px;font-size:0.95rem}
+.form-placeholder{background:#fef6e8;border:2px dashed #e8c07a;border-radius:16px;padding:60px 20px;color:#c0a060;font-size:0.9rem}
+
+.privacy-content h3{color:#8B6914;font-size:1.1rem;margin:24px 0 12px}
+.privacy-content p{font-size:0.9rem;margin-bottom:12px}
+
+.site-footer{background:#5a4420;color:#f0e8d8;padding:40px 20px 20px;position:relative}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+.footer-col h4{font-size:1rem;margin-bottom:12px;color:#e8c07a}
+.footer-col a{color:#d8c8a8;font-size:0.85rem;display:block;margin-bottom:6px}
+.footer-col a:hover{color:#fff}
+.footer-col p{font-size:0.85rem;line-height:1.6;color:#c8b898}
+.footer-bottom{text-align:center;margin-top:30px;padding-top:20px;border-top:1px solid #7a6a4a;font-size:0.8rem;color:#a09070}
+.footer-tanuki{text-align:center;margin-bottom:20px}
+
+.section-peek{position:relative}
+.peek-tanuki{position:absolute;top:-10px;right:20px;animation:peekIn .6s ease forwards}
+.paw-transition{position:fixed;top:50%;left:0;z-index:9999;pointer-events:none;display:none}
+.paw-transition.running{display:block;animation:pawWalk 1s ease-in-out forwards}
+
+@media(max-width:768px){
+  nav.main-nav ul{display:none;flex-direction:column;text-align:center}
+  nav.main-nav ul.open{display:flex}
+  .hamburger{display:flex}
+  .header-top{flex-wrap:wrap}
+  .header-phone{font-size:0.8rem;padding:4px 12px}
+  .hero h2{font-size:1.4rem}
+  .hero-tanuki{max-width:200px}
+  .section-title{font-size:1.3rem}
+  .flow-step{flex-direction:column;align-items:center;text-align:center}
+  .sim-row{flex-direction:column;gap:8px}
+  .company-table th{width:100px}
+  .staff-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="paw-transition" id="pawTransition">
+  <svg width="50" height="50" viewBox="0 0 50 50"><g fill="#8B6914" opacity="0.5"><ellipse cx="25" cy="32" rx="12" ry="10"/><ellipse cx="14" cy="20" rx="5" ry="6"/><ellipse cx="36" cy="20" rx="5" ry="6"/><ellipse cx="8" cy="28" rx="4" ry="5"/><ellipse cx="42" cy="28" rx="4" ry="5"/></g></svg>
+</div>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="logo-area" onclick="navigateTo('home')">
+      <svg class="tanuki-wobble" width="52" height="52" viewBox="0 0 100 100">
+        <ellipse cx="25" cy="18" rx="14" ry="12" fill="#b08010"/>
+        <ellipse cx="25" cy="20" rx="9" ry="7" fill="#e8c878"/>
+        <ellipse cx="75" cy="18" rx="14" ry="12" fill="#b08010"/>
+        <ellipse cx="75" cy="20" rx="9" ry="7" fill="#e8c878"/>
+        <circle cx="50" cy="55" r="40" fill="#b08010"/>
+        <ellipse cx="50" cy="62" rx="30" ry="26" fill="#f5e6c8"/>
+        <path d="M50 35 L50 52" stroke="#f5e6c8" stroke-width="8" stroke-linecap="round"/>
+        <ellipse cx="34" cy="46" rx="15" ry="10" fill="#3a2810" rx="12"/>
+        <ellipse cx="66" cy="46" rx="15" ry="10" fill="#3a2810"/>
+        <circle cx="36" cy="46" r="6" fill="#fff"/>
+        <circle cx="64" cy="46" r="6" fill="#fff"/>
+        <circle cx="38" cy="44" r="3.5" fill="#1a0a00"/>
+        <circle cx="66" cy="44" r="3.5" fill="#1a0a00"/>
+        <circle cx="39" cy="43" r="1.2" fill="#fff"/>
+        <circle cx="67" cy="43" r="1.2" fill="#fff"/>
+        <ellipse cx="50" cy="58" rx="6" ry="4.5" fill="#3a2810"/>
+        <path d="M43 64 Q50 72 57 64" stroke="#3a2810" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="26" cy="60" r="7" fill="#f4a0a0" opacity="0.45"/>
+        <circle cx="74" cy="60" r="7" fill="#f4a0a0" opacity="0.45"/>
+      </svg>
+      <h1>アウル訪問看護ステーション<small>大阪府貝塚市｜精神科訪問看護</small></h1>
+    </div>
+    <div class="header-phone">
+      <span class="badge-365">365日対応</span>
+      072-XXX-XXXX
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="main-nav">
+    <ul id="navMenu">
+      <li><a href="#home" onclick="navigateTo('home')" class="active">ホーム</a></li>
+      <li><a href="#staff" onclick="navigateTo('staff')">スタッフ紹介</a></li>
+      <li><a href="#guide" onclick="navigateTo('guide')">ご利用案内</a></li>
+      <li><a href="#service" onclick="navigateTo('service')">サービス紹介</a></li>
+      <li><a href="#medical" onclick="navigateTo('medical')">医療機関の方へ</a></li>
+      <li><a href="#company" onclick="navigateTo('company')">会社情報</a></li>
+      <li><a href="#column" onclick="navigateTo('column')">コラム</a></li>
+      <li><a href="#recruit" onclick="navigateTo('recruit')">採用情報</a></li>
+      <li><a href="#contact" onclick="navigateTo('contact')">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- SVG DEFS -->
+<svg style="display:none">
+  <defs>
+    <symbol id="paw" viewBox="0 0 50 50">
+      <ellipse cx="25" cy="34" rx="11" ry="9" fill="#c09840"/>
+      <ellipse cx="14" cy="22" rx="5" ry="6" fill="#c09840"/>
+      <ellipse cx="36" cy="22" rx="5" ry="6" fill="#c09840"/>
+      <ellipse cx="8" cy="30" rx="4" ry="5" fill="#c09840"/>
+      <ellipse cx="42" cy="30" rx="4" ry="5" fill="#c09840"/>
+    </symbol>
+    <symbol id="tanuki-face-sm" viewBox="0 0 100 100">
+      <ellipse cx="25" cy="18" rx="14" ry="12" fill="#b08010"/>
+      <ellipse cx="25" cy="20" rx="9" ry="7" fill="#e8c878"/>
+      <ellipse cx="75" cy="18" rx="14" ry="12" fill="#b08010"/>
+      <ellipse cx="75" cy="20" rx="9" ry="7" fill="#e8c878"/>
+      <circle cx="50" cy="55" r="40" fill="#b08010"/>
+      <ellipse cx="50" cy="62" rx="30" ry="26" fill="#f5e6c8"/>
+      <path d="M50 35 L50 52" stroke="#f5e6c8" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="34" cy="46" rx="15" ry="10" fill="#3a2810"/>
+      <ellipse cx="66" cy="46" rx="15" ry="10" fill="#3a2810"/>
+      <circle cx="36" cy="46" r="6" fill="#fff"/>
+      <circle cx="64" cy="46" r="6" fill="#fff"/>
+      <circle cx="38" cy="44" r="3.5" fill="#1a0a00"/>
+      <circle cx="66" cy="44" r="3.5" fill="#1a0a00"/>
+      <circle cx="39" cy="43" r="1.2" fill="#fff"/>
+      <circle cx="67" cy="43" r="1.2" fill="#fff"/>
+      <ellipse cx="50" cy="58" rx="6" ry="4.5" fill="#3a2810"/>
+      <path d="M43 64 Q50 72 57 64" stroke="#3a2810" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="26" cy="60" r="7" fill="#f4a0a0" opacity="0.45"/>
+      <circle cx="74" cy="60" r="7" fill="#f4a0a0" opacity="0.45"/>
+    </symbol>
+    <symbol id="tanuki-ears" viewBox="0 0 120 40">
+      <ellipse cx="30" cy="24" rx="20" ry="18" fill="#b08010"/>
+      <ellipse cx="30" cy="26" rx="14" ry="12" fill="#e8c878"/>
+      <ellipse cx="90" cy="24" rx="20" ry="18" fill="#b08010"/>
+      <ellipse cx="90" cy="26" rx="14" ry="12" fill="#e8c878"/>
+    </symbol>
+    <symbol id="tanuki-wonder" viewBox="0 0 50 55">
+      <circle cx="25" cy="30" r="20" fill="#b08010"/>
+      <ellipse cx="25" cy="35" rx="15" ry="13" fill="#f5e6c8"/>
+      <path d="M25 22 L25 30" stroke="#f5e6c8" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="17" cy="27" rx="7" ry="5" fill="#3a2810"/>
+      <ellipse cx="33" cy="27" rx="7" ry="5" fill="#3a2810"/>
+      <circle cx="18" cy="27" r="3.5" fill="#fff"/>
+      <circle cx="34" cy="27" r="3.5" fill="#fff"/>
+      <circle cx="19" cy="26" r="2" fill="#1a0a00"/>
+      <circle cx="35" cy="26" r="2" fill="#1a0a00"/>
+      <ellipse cx="25" cy="35" rx="3.5" ry="2.5" fill="#3a2810"/>
+      <circle cx="25" cy="40" r="3.5" fill="#f5e6c8"/>
+      <circle cx="14" cy="35" r="3.5" fill="#f4a0a0" opacity="0.45"/>
+      <circle cx="36" cy="35" r="3.5" fill="#f4a0a0" opacity="0.45"/>
+      <text x="40" y="14" font-size="16" font-weight="900" fill="#e8833a" font-family="Zen Maru Gothic,sans-serif">?</text>
+    </symbol>
+    <symbol id="tanuki-naruhodo" viewBox="0 0 50 55">
+      <circle cx="25" cy="30" r="20" fill="#b08010"/>
+      <ellipse cx="25" cy="35" rx="15" ry="13" fill="#f5e6c8"/>
+      <path d="M25 22 L25 30" stroke="#f5e6c8" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="17" cy="27" rx="7" ry="5" fill="#3a2810"/>
+      <ellipse cx="33" cy="27" rx="7" ry="5" fill="#3a2810"/>
+      <circle cx="18" cy="27" r="3.5" fill="#fff"/>
+      <circle cx="34" cy="27" r="3.5" fill="#fff"/>
+      <circle cx="19" cy="26" r="2" fill="#1a0a00"/>
+      <circle cx="35" cy="26" r="2" fill="#1a0a00"/>
+      <ellipse cx="25" cy="35" rx="3.5" ry="2.5" fill="#3a2810"/>
+      <path d="M20 39 Q25 44 30 39" stroke="#3a2810" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="14" cy="35" r="3.5" fill="#f4a0a0" opacity="0.45"/>
+      <circle cx="36" cy="35" r="3.5" fill="#f4a0a0" opacity="0.45"/>
+      <text x="38" y="14" font-size="14" font-weight="900" fill="#8B6914" font-family="Zen Maru Gothic,sans-serif">!</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===== HOME ===== -->
+<div id="page-home" class="page-section active">
+  <section class="hero">
+    <div class="hero-tanuki tanuki-float">
+      <svg viewBox="0 0 300 380" width="280">
+        <!-- Striped fluffy tail -->
+        <g transform="translate(220,195) rotate(-25)">
+          <ellipse cx="0" cy="0" rx="26" ry="60" fill="#b08010"/>
+          <ellipse cx="0" cy="0" rx="20" ry="60" fill="#c89820"/>
+          <rect x="-20" y="-55" width="40" height="10" rx="6" fill="#4a3520" opacity="0.55"/>
+          <rect x="-20" y="-38" width="40" height="10" rx="6" fill="#4a3520" opacity="0.55"/>
+          <rect x="-20" y="-21" width="40" height="10" rx="6" fill="#4a3520" opacity="0.55"/>
+          <rect x="-20" y="-4" width="40" height="10" rx="6" fill="#4a3520" opacity="0.55"/>
+          <rect x="-20" y="13" width="40" height="10" rx="6" fill="#4a3520" opacity="0.55"/>
+          <rect x="-18" y="30" width="36" height="10" rx="6" fill="#4a3520" opacity="0.45"/>
+          <ellipse cx="0" cy="58" rx="14" ry="8" fill="#b08010" opacity="0.6"/>
+        </g>
+        <!-- Left leg -->
+        <ellipse cx="118" cy="330" rx="24" ry="18" fill="#8a6508"/>
+        <ellipse cx="110" cy="338" rx="8" ry="5" fill="#5a4420"/>
+        <ellipse cx="120" cy="340" rx="8" ry="5" fill="#5a4420"/>
+        <ellipse cx="130" cy="338" rx="8" ry="5" fill="#5a4420"/>
+        <!-- Right leg -->
+        <ellipse cx="182" cy="330" rx="24" ry="18" fill="#8a6508"/>
+        <ellipse cx="174" cy="338" rx="8" ry="5" fill="#5a4420"/>
+        <ellipse cx="184" cy="340" rx="8" ry="5" fill="#5a4420"/>
+        <ellipse cx="194" cy="338" rx="8" ry="5" fill="#5a4420"/>
+        <!-- Body (round ponpoko) -->
+        <ellipse cx="150" cy="240" rx="80" ry="100" fill="#b08010"/>
+        <!-- Big belly -->
+        <ellipse cx="150" cy="255" rx="58" ry="72" fill="#f5e6c8"/>
+        <!-- Belly button line -->
+        <path d="M150 220 L150 240" stroke="#e0d0b0" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <!-- Left arm -->
+        <ellipse cx="74" cy="220" rx="20" ry="32" fill="#b08010" transform="rotate(15,74,220)"/>
+        <ellipse cx="64" cy="248" rx="14" ry="11" fill="#8a6508"/>
+        <ellipse cx="58" cy="252" rx="5" ry="4" fill="#5a4420"/>
+        <ellipse cx="66" cy="254" rx="5" ry="4" fill="#5a4420"/>
+        <ellipse cx="74" cy="252" rx="5" ry="4" fill="#5a4420"/>
+        <!-- Right arm -->
+        <ellipse cx="226" cy="215" rx="20" ry="32" fill="#b08010" transform="rotate(-15,226,215)"/>
+        <ellipse cx="236" cy="243" rx="14" ry="11" fill="#8a6508"/>
+        <ellipse cx="230" cy="247" rx="5" ry="4" fill="#5a4420"/>
+        <ellipse cx="238" cy="249" rx="5" ry="4" fill="#5a4420"/>
+        <ellipse cx="246" cy="247" rx="5" ry="4" fill="#5a4420"/>
+        <!-- Head -->
+        <circle cx="150" cy="110" r="65" fill="#b08010"/>
+        <!-- Ears -->
+        <ellipse cx="96" cy="58" rx="18" ry="16" fill="#b08010"/>
+        <ellipse cx="96" cy="60" rx="12" ry="10" fill="#e8c878"/>
+        <ellipse cx="204" cy="58" rx="18" ry="16" fill="#b08010"/>
+        <ellipse cx="204" cy="60" rx="12" ry="10" fill="#e8c878"/>
+        <!-- Face cream area -->
+        <ellipse cx="150" cy="120" rx="46" ry="40" fill="#f5e6c8"/>
+        <!-- Nose bridge white -->
+        <path d="M150 88 L150 112" stroke="#f5e6c8" stroke-width="10" stroke-linecap="round"/>
+        <!-- Eye mask (key raccoon dog feature) -->
+        <ellipse cx="125" cy="100" rx="20" ry="13" fill="#3a2810"/>
+        <ellipse cx="175" cy="100" rx="20" ry="13" fill="#3a2810"/>
+        <!-- Eyes -->
+        <circle cx="128" cy="100" r="8" fill="#fff"/>
+        <circle cx="172" cy="100" r="8" fill="#fff"/>
+        <circle cx="130" cy="98" r="5" fill="#1a0a00"/>
+        <circle cx="174" cy="98" r="5" fill="#1a0a00"/>
+        <circle cx="132" cy="96" r="2" fill="#fff"/>
+        <circle cx="176" cy="96" r="2" fill="#fff"/>
+        <!-- Nose -->
+        <ellipse cx="150" cy="116" rx="7" ry="5" fill="#3a2810"/>
+        <!-- Nose highlight -->
+        <ellipse cx="148" cy="114" rx="2" ry="1.5" fill="#5a4a3a" opacity="0.3"/>
+        <!-- Mouth -->
+        <path d="M140 124 Q150 134 160 124" stroke="#3a2810" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Cheeks -->
+        <circle cx="108" cy="120" r="9" fill="#f4a0a0" opacity="0.4"/>
+        <circle cx="192" cy="120" r="9" fill="#f4a0a0" opacity="0.4"/>
+        <!-- Whisker-like fur marks -->
+        <path d="M100 112 L88 108" stroke="#c09020" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <path d="M100 118 L86 118" stroke="#c09020" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <path d="M200 112 L212 108" stroke="#c09020" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <path d="M200 118 L214 118" stroke="#c09020" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+        <!-- Nurse cap -->
+        <path d="M112 68 Q150 38 188 68" fill="#fff" stroke="#e07070" stroke-width="2"/>
+        <rect x="115" y="66" width="70" height="10" rx="3" fill="#fff"/>
+        <line x1="148" y1="44" x2="148" y2="62" stroke="#e07070" stroke-width="3"/>
+        <line x1="140" y1="52" x2="156" y2="52" stroke="#e07070" stroke-width="3"/>
+        <!-- Stethoscope -->
+        <path d="M128 155 Q122 185 135 210 Q142 222 150 222" stroke="#999" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="150" cy="224" r="7" fill="#bbb" stroke="#999" stroke-width="2"/>
+        <circle cx="126" cy="153" r="5" fill="#bbb"/>
+      </svg>
+    </div>
+    <h2>あなたの暮らしに寄り添う<br>訪問看護ステーション</h2>
+    <p>精神科訪問看護を中心に、大阪府貝塚市エリアで<br>365日体制であなたの生活をサポートします</p>
+    <div class="hero-badges">
+      <span class="hero-badge">精神科訪問看護</span>
+      <span class="hero-badge">365日対応</span>
+      <span class="hero-badge">看護師が対応</span>
+      <span class="hero-badge">貝塚市エリア</span>
+    </div>
+  </section>
+
+  <div class="paw-divider">
+    <svg width="30" height="30"><use href="#paw"/></svg>
+    <svg width="36" height="36"><use href="#paw"/></svg>
+    <svg width="30" height="30"><use href="#paw"/></svg>
+  </div>
+
+  <section class="container section-peek">
+    <div class="peek-tanuki"><svg width="50" height="50" class="tanuki-float"><use href="#tanuki-face-sm"/></svg></div>
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      アウルが選ばれる3つの理由
+    </h2>
+    <div class="strengths">
+      <div class="strength-card fade-in">
+        <svg width="60" height="60" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#fef6e8" stroke="#e8c07a" stroke-width="3"/><text x="50" y="62" text-anchor="middle" font-size="32">&#x1f9e0;</text></svg>
+        <h3>精神科看護の専門性</h3>
+        <p>精神科領域に豊富な経験を持つ看護師が在籍。こころの不調に寄り添い、安心して在宅療養を続けられるようサポートします。</p>
+      </div>
+      <div class="strength-card fade-in">
+        <svg width="60" height="60" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#fef6e8" stroke="#e8c07a" stroke-width="3"/><text x="50" y="62" text-anchor="middle" font-size="32">&#x1f4c5;</text></svg>
+        <h3>365日対応体制</h3>
+        <p>土日祝日も含め、年中無休で対応しています。急な体調の変化にも迅速に駆けつけ、ご利用者さまとご家族の安心を守ります。</p>
+      </div>
+      <div class="strength-card fade-in">
+        <svg width="60" height="60" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#fef6e8" stroke="#e8c07a" stroke-width="3"/><text x="50" y="62" text-anchor="middle" font-size="32">&#x1f3e0;</text></svg>
+        <h3>地域密着のケア</h3>
+        <p>貝塚市を中心としたエリアに根ざし、地域の医療機関や福祉施設との連携を大切にしています。顔の見える関係で安心のケアを。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="paw-divider">
+    <svg width="30" height="30"><use href="#paw"/></svg>
+    <svg width="36" height="36"><use href="#paw"/></svg>
+    <svg width="30" height="30"><use href="#paw"/></svg>
+  </div>
+
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      お知らせ
+    </h2>
+    <ul class="news-list">
+      <li><span class="news-date">2026.03.01</span><span class="news-label label-info">お知らせ</span><span>ホームページをリニューアルしました</span></li>
+      <li><span class="news-date">2026.02.15</span><span class="news-label label-recruit">採用</span><span>看護師スタッフを募集しています</span></li>
+      <li><span class="news-date">2026.02.01</span><span class="news-label label-column">コラム</span><span>「精神科訪問看護ってどんなサービス？」を公開しました</span></li>
+      <li><span class="news-date">2026.01.10</span><span class="news-label label-info">お知らせ</span><span>年末年始の対応について</span></li>
+    </ul>
+  </section>
+</div>
+
+<!-- ===== STAFF ===== -->
+<div id="page-staff" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      スタッフ紹介
+    </h2>
+    <p style="margin-bottom:24px;color:#7a6a5a">私たちが心を込めてケアいたします。お気軽にご相談ください。</p>
+    <div class="staff-grid">
+      <div class="staff-card">
+        <div class="ear-deco"><svg width="90" height="34"><use href="#tanuki-ears"/></svg></div>
+        <div class="staff-photo">写真スペース</div>
+        <div class="staff-info">
+          <h3>田中 花子</h3>
+          <p class="role">管理者・看護師</p>
+          <p>精神科病院で10年の勤務経験があります。ご利用者さま一人ひとりのペースを大切に、じっくりと向き合うケアを心がけています。</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="ear-deco"><svg width="90" height="34"><use href="#tanuki-ears"/></svg></div>
+        <div class="staff-photo">写真スペース</div>
+        <div class="staff-info">
+          <h3>鈴木 太郎</h3>
+          <p class="role">看護師</p>
+          <p>内科・精神科の経験を活かし、身体面と精神面の両方からサポートします。趣味は料理で、食事のアドバイスも得意です。</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="ear-deco"><svg width="90" height="34"><use href="#tanuki-ears"/></svg></div>
+        <div class="staff-photo">写真スペース</div>
+        <div class="staff-info">
+          <h3>佐藤 美咲</h3>
+          <p class="role">看護師</p>
+          <p>訪問看護の経験5年。ご自宅での生活を楽しく送れるよう、日々の小さな変化にも気を配りながらケアしています。</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="ear-deco"><svg width="90" height="34"><use href="#tanuki-ears"/></svg></div>
+        <div class="staff-photo">写真スペース</div>
+        <div class="staff-info">
+          <h3>山田 健一</h3>
+          <p class="role">看護師</p>
+          <p>急性期病院での経験を経て訪問看護へ。医療処置から生活支援まで幅広く対応します。明るい雰囲気づくりが得意です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== GUIDE ===== -->
+<div id="page-guide" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      ご利用案内
+    </h2>
+
+    <h3 style="color:#8B6914;font-size:1.2rem;margin-bottom:16px">ご利用の流れ</h3>
+    <div class="flow-steps">
+      <div class="flow-step fade-in">
+        <div class="flow-num">1</div>
+        <div><h3>お問い合わせ・ご相談</h3><p>お電話またはお問い合わせフォームからお気軽にご連絡ください。主治医やケアマネジャーからのご紹介も受け付けています。</p></div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">2</div>
+        <div><h3>訪問看護指示書の交付</h3><p>主治医から訪問看護指示書を発行していただきます。当ステーションから主治医へ依頼することも可能です。</p></div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">3</div>
+        <div><h3>初回訪問・アセスメント</h3><p>ご自宅にお伺いし、ご本人・ご家族のご希望や体調を確認します。ケアプランを一緒に考えていきましょう。</p></div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">4</div>
+        <div><h3>定期訪問の開始</h3><p>計画に基づき、看護師が定期的にご自宅へ訪問します。状態に合わせて訪問頻度は調整可能です。</p></div>
+      </div>
+    </div>
+
+    <div class="paw-divider">
+      <svg width="24" height="24"><use href="#paw"/></svg>
+      <svg width="30" height="30"><use href="#paw"/></svg>
+      <svg width="24" height="24"><use href="#paw"/></svg>
+    </div>
+
+    <h3 style="color:#8B6914;font-size:1.2rem;margin-bottom:16px">保険制度について</h3>
+    <div class="insurance-grid">
+      <div class="insurance-card">
+        <h3>医療保険</h3>
+        <ul>
+          <li>主治医の訪問看護指示書が必要です</li>
+          <li>精神科訪問看護は医療保険が適用されます</li>
+          <li>自己負担割合：1割〜3割</li>
+          <li>自立支援医療制度の利用で負担軽減も可能</li>
+        </ul>
+      </div>
+      <div class="insurance-card">
+        <h3>介護保険</h3>
+        <ul>
+          <li>要介護・要支援認定が必要です</li>
+          <li>ケアマネジャーによるケアプランに基づきます</li>
+          <li>自己負担割合：1割〜3割</li>
+          <li>他の介護サービスと組み合わせて利用可能</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="paw-divider">
+      <svg width="24" height="24"><use href="#paw"/></svg>
+      <svg width="30" height="30"><use href="#paw"/></svg>
+      <svg width="24" height="24"><use href="#paw"/></svg>
+    </div>
+
+    <div class="simulator">
+      <h3>料金シミュレーション（概算）</h3>
+      <p style="font-size:0.85rem;color:#a08040;margin-bottom:16px">※あくまで目安です。詳しくはお問い合わせください。</p>
+      <div class="sim-row">
+        <label>保険種別</label>
+        <select id="simInsurance" onchange="calcSim()">
+          <option value="medical">医療保険</option>
+          <option value="care">介護保険</option>
+        </select>
+      </div>
+      <div class="sim-row">
+        <label>自己負担割合</label>
+        <select id="simRatio" onchange="calcSim()">
+          <option value="1">1割</option>
+          <option value="2">2割</option>
+          <option value="3">3割</option>
+        </select>
+      </div>
+      <div class="sim-row">
+        <label>月間訪問回数</label>
+        <input type="number" id="simVisits" value="4" min="1" max="20" onchange="calcSim()" oninput="calcSim()">
+        <span style="font-size:0.85rem;color:#a08040">回/月</span>
+      </div>
+      <div class="sim-result" id="simResult">
+        概算自己負担額：約 <span id="simAmount">3,060</span>円/月
+      </div>
+    </div>
+
+    <div class="paw-divider">
+      <svg width="24" height="24"><use href="#paw"/></svg>
+      <svg width="30" height="30"><use href="#paw"/></svg>
+      <svg width="24" height="24"><use href="#paw"/></svg>
+    </div>
+
+    <h3 style="color:#8B6914;font-size:1.2rem;margin-bottom:8px">よくあるご質問</h3>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>訪問看護は誰でも利用できますか？</span><span class="faq-tanuki"><svg width="32" height="35"><use href="#tanuki-wonder"/></svg></span></div>
+        <div class="faq-a">主治医が訪問看護の必要性を認め、訪問看護指示書を交付いただければ、どなたでもご利用いただけます。年齢や疾患を問わず対応していますので、まずはお気軽にご相談ください。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>精神科の訪問看護では何をしてもらえますか？</span><span class="faq-tanuki"><svg width="32" height="35"><use href="#tanuki-wonder"/></svg></span></div>
+        <div class="faq-a">服薬管理、生活リズムの調整、対人関係の相談、社会資源の活用支援など、日常生活全般のサポートを行います。症状の観察やご家族への支援も含め、その方に合ったケアを提供します。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>費用はどれくらいかかりますか？</span><span class="faq-tanuki"><svg width="32" height="35"><use href="#tanuki-wonder"/></svg></span></div>
+        <div class="faq-a">保険適用により、自己負担は1割〜3割です。自立支援医療制度を利用されている場合、さらに負担が軽減されます。上の料金シミュレーションも参考にしてください。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>土日や祝日も訪問してもらえますか？</span><span class="faq-tanuki"><svg width="32" height="35"><use href="#tanuki-wonder"/></svg></span></div>
+        <div class="faq-a">はい、当ステーションは365日対応しています。土日祝日の定期訪問も可能ですし、緊急時にも対応できる体制を整えています。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>訪問エリアはどこまでですか？</span><span class="faq-tanuki"><svg width="32" height="35"><use href="#tanuki-wonder"/></svg></span></div>
+        <div class="faq-a">貝塚市を中心に、岸和田市、泉佐野市、熊取町、泉南市など近隣エリアに対応しています。エリア外の方もまずはご相談ください。</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== SERVICE ===== -->
+<div id="page-service" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      サービス紹介
+    </h2>
+    <div class="service-cards">
+      <div class="service-card fade-in">
+        <h3>訪問看護</h3>
+        <p>看護師がご自宅に訪問し、主治医の指示に基づいた医療的ケアと生活支援を行います。</p>
+        <ul>
+          <li>精神科看護（服薬管理、生活支援、相談）</li>
+          <li>バイタルサインの確認・健康観察</li>
+          <li>医療処置（点滴、褥瘡ケア等）</li>
+          <li>リハビリテーション支援</li>
+          <li>ご家族への介護指導・相談</li>
+          <li>ターミナルケア（終末期ケア）</li>
+          <li>主治医・ケアマネとの連携</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <h3>生活介護事業</h3>
+        <p>障がいをお持ちの方が日中活動できる場を提供しています。創作活動やレクリエーションを通じて、社会参加と自立を支援します。</p>
+        <ul>
+          <li>日中活動の場の提供</li>
+          <li>食事・入浴等の介護</li>
+          <li>創作的活動の機会提供</li>
+          <li>生産活動の機会提供</li>
+          <li>身体機能の維持・向上支援</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <h3>グループホーム</h3>
+        <p>障がいをお持ちの方が地域の中で共同生活を送る住まいです。日常生活上の支援を受けながら、自分らしい暮らしを実現できます。</p>
+        <p style="margin-top:12px">
+          <a href="#" style="display:inline-block;background:#8B6914;color:#fff;padding:8px 20px;border-radius:20px;font-weight:700;font-size:0.9rem" onclick="event.preventDefault()">グループホームHPはこちら（外部リンク）</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== MEDICAL ===== -->
+<div id="page-medical" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      医療機関の方へ
+    </h2>
+    <p style="margin-bottom:24px;color:#7a6a5a">医療機関・クリニックの皆さまへ。当ステーションとの連携についてご案内いたします。</p>
+
+    <div class="medical-section">
+      <h3>対応可能な疾患・状態</h3>
+      <div class="tag-list">
+        <span class="tag">統合失調症</span><span class="tag">うつ病</span><span class="tag">双極性障害</span><span class="tag">不安障害</span><span class="tag">認知症</span><span class="tag">発達障害</span><span class="tag">依存症</span><span class="tag">パーソナリティ障害</span><span class="tag">摂食障害</span><span class="tag">PTSD</span><span class="tag">脳血管疾患</span><span class="tag">神経難病</span><span class="tag">がん終末期</span><span class="tag">褥瘡</span>
+      </div>
+    </div>
+
+    <div class="medical-section">
+      <h3>対応可能な処置</h3>
+      <div class="tag-list">
+        <span class="tag">服薬管理・指導</span><span class="tag">点滴管理</span><span class="tag">褥瘡処置</span><span class="tag">カテーテル管理</span><span class="tag">ストーマケア</span><span class="tag">血糖測定・インスリン管理</span><span class="tag">在宅酸素管理</span><span class="tag">吸引</span><span class="tag">経管栄養管理</span>
+      </div>
+    </div>
+
+    <div class="paw-divider">
+      <svg width="24" height="24"><use href="#paw"/></svg>
+      <svg width="30" height="30"><use href="#paw"/></svg>
+      <svg width="24" height="24"><use href="#paw"/></svg>
+    </div>
+
+    <div class="medical-section">
+      <h3>連携の流れ</h3>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-num">1</div><div><h3>ご相談・ご依頼</h3><p>お電話またはFAXにてご連絡ください。患者さまの情報をお伺いします。</p></div></div>
+        <div class="flow-step"><div class="flow-num">2</div><div><h3>訪問看護指示書の交付</h3><p>主治医より訪問看護指示書をいただきます。指示書用紙のご用意もございます。</p></div></div>
+        <div class="flow-step"><div class="flow-num">3</div><div><h3>初回訪問・情報共有</h3><p>患者さまを訪問し、アセスメントを実施。訪問看護計画書を作成し、主治医へ報告いたします。</p></div></div>
+        <div class="flow-step"><div class="flow-num">4</div><div><h3>定期報告</h3><p>毎月の訪問看護報告書にて、状態変化や経過をご報告いたします。緊急時は随時ご連絡いたします。</p></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== COMPANY ===== -->
+<div id="page-company" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      会社情報
+    </h2>
+    <table class="company-table">
+      <tr><th>事業所名</th><td>アウル訪問看護ステーション</td></tr>
+      <tr><th>所在地</th><td>大阪府貝塚市○○町○-○-○</td></tr>
+      <tr><th>電話番号</th><td>072-XXX-XXXX</td></tr>
+      <tr><th>FAX番号</th><td>072-XXX-XXXX</td></tr>
+      <tr><th>営業時間</th><td>9:00〜18:00（緊急時は24時間対応）</td></tr>
+      <tr><th>定休日</th><td>なし（365日対応）</td></tr>
+      <tr><th>事業内容</th><td>訪問看護、生活介護事業、グループホーム</td></tr>
+      <tr><th>開設年月</th><td>20XX年X月</td></tr>
+      <tr><th>管理者</th><td>田中 花子（看護師）</td></tr>
+      <tr><th>スタッフ数</th><td>4名（看護師4名）</td></tr>
+    </table>
+
+    <h3 style="color:#8B6914;font-size:1.2rem;margin-bottom:12px">対応エリア</h3>
+    <p style="font-size:0.9rem;color:#7a6a5a;margin-bottom:12px">貝塚市を中心に、以下のエリアに対応しています。</p>
+    <div class="area-list">
+      <span class="area-tag">貝塚市</span><span class="area-tag">岸和田市</span><span class="area-tag">泉佐野市</span><span class="area-tag">熊取町</span><span class="area-tag">泉南市</span><span class="area-tag">阪南市</span><span class="area-tag">泉大津市</span><span class="area-tag">和泉市</span>
+    </div>
+
+    <div class="paw-divider">
+      <svg width="24" height="24"><use href="#paw"/></svg>
+      <svg width="30" height="30"><use href="#paw"/></svg>
+      <svg width="24" height="24"><use href="#paw"/></svg>
+    </div>
+
+    <h3 style="color:#8B6914;font-size:1.2rem;margin-bottom:12px">アクセス</h3>
+    <div style="background:#f5e8d4;border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;color:#c0a878;font-size:0.9rem;border:2px dashed #e8c07a">
+      Googleマップ埋め込みスペース
+    </div>
+  </section>
+</div>
+
+<!-- ===== COLUMN ===== -->
+<div id="page-column" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      コラム
+    </h2>
+    <div class="column-filters">
+      <button class="column-filter active" onclick="filterColumns('all',this)">すべて</button>
+      <button class="column-filter" onclick="filterColumns('mental',this)">こころの健康</button>
+      <button class="column-filter" onclick="filterColumns('life',this)">暮らしのヒント</button>
+      <button class="column-filter" onclick="filterColumns('nursing',this)">訪問看護</button>
+    </div>
+    <div class="column-grid" id="columnGrid">
+      <div class="column-card" data-category="mental">
+        <div class="column-thumb">サムネイル画像</div>
+        <div class="column-body"><span class="col-label label-info">こころの健康</span><h3>精神科訪問看護ってどんなサービス？</h3><p class="col-date">2026.02.01</p></div>
+      </div>
+      <div class="column-card" data-category="life">
+        <div class="column-thumb">サムネイル画像</div>
+        <div class="column-body"><span class="col-label label-column">暮らしのヒント</span><h3>睡眠の質を上げる5つの習慣</h3><p class="col-date">2026.01.20</p></div>
+      </div>
+      <div class="column-card" data-category="nursing">
+        <div class="column-thumb">サムネイル画像</div>
+        <div class="column-body"><span class="col-label label-recruit">訪問看護</span><h3>訪問看護を始めるまでの流れ</h3><p class="col-date">2026.01.10</p></div>
+      </div>
+      <div class="column-card" data-category="mental">
+        <div class="column-thumb">サムネイル画像</div>
+        <div class="column-body"><span class="col-label label-info">こころの健康</span><h3>不安を感じたときのセルフケア</h3><p class="col-date">2025.12.15</p></div>
+      </div>
+      <div class="column-card" data-category="life">
+        <div class="column-thumb">サムネイル画像</div>
+        <div class="column-body"><span class="col-label label-column">暮らしのヒント</span><h3>お薬を飲み忘れないための工夫</h3><p class="col-date">2025.12.01</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== RECRUIT ===== -->
+<div id="page-recruit" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      採用情報
+    </h2>
+    <p style="margin-bottom:24px;color:#7a6a5a">一緒に地域の在宅医療を支えてくれる仲間を募集しています。</p>
+    <div class="recruit-card">
+      <h3>看護師（正社員）</h3>
+      <table class="recruit-table">
+        <tr><th>職種</th><td>看護師（正看護師）</td></tr>
+        <tr><th>雇用形態</th><td>正社員</td></tr>
+        <tr><th>給与</th><td>月給 280,000円〜350,000円（経験・能力による）</td></tr>
+        <tr><th>勤務時間</th><td>9:00〜18:00</td></tr>
+        <tr><th>休日</th><td>シフト制（月9日休み）</td></tr>
+        <tr><th>待遇</th><td>社会保険完備、交通費支給、車通勤可、賞与あり</td></tr>
+        <tr><th>応募資格</th><td>正看護師資格をお持ちの方（経験不問、精神科経験者歓迎）</td></tr>
+        <tr><th>勤務地</th><td>大阪府貝塚市（訪問エリア：貝塚市周辺）</td></tr>
+      </table>
+    </div>
+    <div class="recruit-card">
+      <h3>職場の雰囲気</h3>
+      <p style="font-size:0.9rem;color:#7a6a5a;line-height:2">
+        少人数のステーションだからこそ、スタッフ同士の距離が近く、何でも相談しやすい環境です。困ったことがあればすぐにチームで相談。一人で抱え込まない体制を大切にしています。<br>
+        精神科未経験の方でも、先輩スタッフが丁寧に同行訪問から指導しますのでご安心ください。<br>
+        「利用者さんの生活に寄り添いたい」「じっくり関わる看護がしたい」という方、ぜひご応募ください。
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div id="page-contact" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      お問い合わせ
+    </h2>
+    <div class="contact-box">
+      <p>訪問看護のご相談・ご依頼、採用に関するお問い合わせなど、<br>お気軽にご連絡ください。</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+        <a href="tel:072-XXX-XXXX" style="display:inline-flex;align-items:center;gap:8px;background:#8B6914;color:#fff;padding:12px 24px;border-radius:30px;font-weight:700;font-size:1rem">072-XXX-XXXX（365日対応）</a>
+      </div>
+      <div class="form-placeholder">
+        Googleフォーム埋め込みスペース<br>
+        <small>（実際にはGoogleフォームのiframeが入ります）</small>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PRIVACY ===== -->
+<div id="page-privacy" class="page-section">
+  <section class="container">
+    <h2 class="section-title">
+      <svg width="36" height="36"><use href="#tanuki-face-sm"/></svg>
+      プライバシーポリシー
+    </h2>
+    <div class="privacy-content">
+      <p>アウル訪問看護ステーション（以下「当ステーション」）は、ご利用者さまの個人情報の保護に努めてまいります。</p>
+      <h3>1. 個人情報の収集について</h3>
+      <p>当ステーションでは、訪問看護サービスの提供に必要な範囲で、ご利用者さまの個人情報を収集いたします。収集する際は、利用目的を明示し、適法かつ公正な手段で行います。</p>
+      <h3>2. 個人情報の利用目的</h3>
+      <p>収集した個人情報は、以下の目的に利用いたします。訪問看護サービスの提供、医療機関との連携、介護保険・医療保険の請求、サービスの質の向上、採用活動への対応。</p>
+      <h3>3. 個人情報の第三者提供</h3>
+      <p>法令に基づく場合を除き、ご本人の同意なく個人情報を第三者に提供することはありません。ただし、主治医やケアマネジャー等、ケアに関わる関係者との情報共有は、サービス提供に必要な範囲で行います。</p>
+      <h3>4. 個人情報の管理</h3>
+      <p>個人情報への不正アクセス、紛失、改ざん、漏えい等を防ぐため、適切な安全管理措置を講じます。</p>
+      <h3>5. お問い合わせ</h3>
+      <p>個人情報の取り扱いに関するお問い合わせは、当ステーションまでご連絡ください。</p>
+      <p style="margin-top:24px;color:#a08040;font-size:0.85rem">制定日：20XX年X月X日<br>アウル訪問看護ステーション　管理者　田中 花子</p>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-tanuki">
+    <svg width="130" height="150" viewBox="0 0 200 240">
+      <!-- Tail -->
+      <g transform="translate(158,135) rotate(-25)">
+        <ellipse cx="0" cy="0" rx="16" ry="40" fill="#b08010"/>
+        <ellipse cx="0" cy="0" rx="12" ry="40" fill="#c89820"/>
+        <rect x="-12" y="-36" width="24" height="8" rx="4" fill="#4a3520" opacity="0.55"/>
+        <rect x="-12" y="-22" width="24" height="8" rx="4" fill="#4a3520" opacity="0.55"/>
+        <rect x="-12" y="-8" width="24" height="8" rx="4" fill="#4a3520" opacity="0.55"/>
+        <rect x="-12" y="6" width="24" height="8" rx="4" fill="#4a3520" opacity="0.55"/>
+        <rect x="-12" y="20" width="24" height="8" rx="4" fill="#4a3520" opacity="0.55"/>
+      </g>
+      <!-- Legs -->
+      <ellipse cx="80" cy="210" rx="18" ry="14" fill="#8a6508"/>
+      <ellipse cx="120" cy="210" rx="18" ry="14" fill="#8a6508"/>
+      <!-- Body -->
+      <ellipse cx="100" cy="160" rx="55" ry="65" fill="#b08010"/>
+      <!-- Belly -->
+      <ellipse cx="100" cy="170" rx="38" ry="48" fill="#f5e6c8"/>
+      <!-- Left arm -->
+      <ellipse cx="52" cy="148" rx="14" ry="24" fill="#b08010" transform="rotate(15,52,148)"/>
+      <!-- Right arm (waving) -->
+      <g style="transform-origin:150px 135px;animation:wave 1s ease-in-out infinite">
+        <ellipse cx="150" cy="128" rx="14" ry="24" fill="#b08010" transform="rotate(-40,150,128)"/>
+        <ellipse cx="158" cy="108" rx="10" ry="9" fill="#8a6508"/>
+        <ellipse cx="154" cy="112" rx="4" ry="3" fill="#5a4420"/>
+        <ellipse cx="160" cy="114" rx="4" ry="3" fill="#5a4420"/>
+        <ellipse cx="166" cy="112" rx="4" ry="3" fill="#5a4420"/>
+      </g>
+      <!-- Head -->
+      <circle cx="100" cy="74" r="46" fill="#b08010"/>
+      <!-- Ears -->
+      <ellipse cx="64" cy="38" rx="14" ry="12" fill="#b08010"/>
+      <ellipse cx="64" cy="40" rx="9" ry="8" fill="#e8c878"/>
+      <ellipse cx="136" cy="38" rx="14" ry="12" fill="#b08010"/>
+      <ellipse cx="136" cy="40" rx="9" ry="8" fill="#e8c878"/>
+      <!-- Face -->
+      <ellipse cx="100" cy="80" rx="34" ry="28" fill="#f5e6c8"/>
+      <path d="M100 60 L100 74" stroke="#f5e6c8" stroke-width="8" stroke-linecap="round"/>
+      <!-- Eye mask -->
+      <ellipse cx="85" cy="68" rx="13" ry="9" fill="#3a2810"/>
+      <ellipse cx="115" cy="68" rx="13" ry="9" fill="#3a2810"/>
+      <!-- Eyes (happy closed) -->
+      <path d="M80 68 Q85 63 90 68" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M110 68 Q115 63 120 68" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Nose -->
+      <ellipse cx="100" cy="80" rx="5" ry="3.5" fill="#3a2810"/>
+      <!-- Mouth -->
+      <path d="M93 85 Q100 93 107 85" stroke="#3a2810" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- Cheeks -->
+      <circle cx="76" cy="80" r="5" fill="#f4a0a0" opacity="0.4"/>
+      <circle cx="124" cy="80" r="5" fill="#f4a0a0" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>アウル訪問看護ステーション</h4>
+      <p>〒597-XXXX<br>大阪府貝塚市○○町○-○-○<br>TEL: 072-XXX-XXXX<br>FAX: 072-XXX-XXXX</p>
+    </div>
+    <div class="footer-col">
+      <h4>ページ一覧</h4>
+      <a href="#home" onclick="navigateTo('home')">ホーム</a>
+      <a href="#staff" onclick="navigateTo('staff')">スタッフ紹介</a>
+      <a href="#guide" onclick="navigateTo('guide')">ご利用案内</a>
+      <a href="#service" onclick="navigateTo('service')">サービス紹介</a>
+      <a href="#medical" onclick="navigateTo('medical')">医療機関の方へ</a>
+      <a href="#company" onclick="navigateTo('company')">会社情報</a>
+      <a href="#column" onclick="navigateTo('column')">コラム</a>
+      <a href="#recruit" onclick="navigateTo('recruit')">採用情報</a>
+      <a href="#contact" onclick="navigateTo('contact')">お問い合わせ</a>
+      <a href="#privacy" onclick="navigateTo('privacy')">プライバシーポリシー</a>
+    </div>
+    <div class="footer-col">
+      <h4>外部リンク</h4>
+      <a href="#" onclick="event.preventDefault()">公式LINE</a>
+      <a href="#" onclick="event.preventDefault()">Instagram</a>
+      <a href="#" onclick="event.preventDefault()">グループホームHP</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 アウル訪問看護ステーション All Rights Reserved.</div>
+</footer>
+
+<script>
+function navigateTo(page){
+  var paw=document.getElementById('pawTransition');
+  paw.classList.remove('running');
+  void paw.offsetWidth;
+  paw.classList.add('running');
+  setTimeout(function(){paw.classList.remove('running')},1100);
+  var pages=document.querySelectorAll('.page-section');
+  for(var i=0;i<pages.length;i++) pages[i].classList.remove('active');
+  var target=document.getElementById('page-'+page);
+  if(target) target.classList.add('active');
+  var links=document.querySelectorAll('.main-nav a');
+  for(var i=0;i<links.length;i++){
+    links[i].classList.remove('active');
+    if(links[i].getAttribute('href')==='#'+page) links[i].classList.add('active');
+  }
+  document.getElementById('navMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  window.scrollTo(0,0);
+  setTimeout(function(){
+    var els=target.querySelectorAll('.fade-in');
+    for(var j=0;j<els.length;j++){
+      (function(el,delay){setTimeout(function(){el.classList.add('visible')},delay)})(els[j],j*150);
+    }
+  },100);
+}
+function toggleMenu(){
+  document.getElementById('navMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function toggleFaq(item){
+  var isOpen=item.classList.contains('open');
+  var items=document.querySelectorAll('.faq-item');
+  for(var i=0;i<items.length;i++){
+    items[i].classList.remove('open');
+    var u=items[i].querySelector('.faq-tanuki svg use');
+    if(u) u.setAttribute('href','#tanuki-wonder');
+  }
+  if(!isOpen){
+    item.classList.add('open');
+    var tanukiUse=item.querySelector('.faq-tanuki svg use');
+    if(tanukiUse) tanukiUse.setAttribute('href','#tanuki-naruhodo');
+  }
+}
+function calcSim(){
+  var insurance=document.getElementById('simInsurance').value;
+  var ratio=parseInt(document.getElementById('simRatio').value);
+  var visits=parseInt(document.getElementById('simVisits').value)||1;
+  var unitPrice=insurance==='medical'?7650:8140;
+  var total=Math.round(unitPrice*visits*ratio/10);
+  document.getElementById('simAmount').textContent=total.toLocaleString();
+}
+function filterColumns(cat,btn){
+  var cards=document.querySelectorAll('.column-card');
+  for(var i=0;i<cards.length;i++){
+    cards[i].style.display=(cat==='all'||cards[i].getAttribute('data-category')===cat)?'':'none';
+  }
+  var btns=document.querySelectorAll('.column-filter');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
+  btn.classList.add('active');
+}
+function handleHash(){
+  var hash=window.location.hash.replace('#','');
+  if(hash&&document.getElementById('page-'+hash)){navigateTo(hash)}else{navigateTo('home')}
+}
+window.addEventListener('hashchange',handleHash);
+window.addEventListener('DOMContentLoaded',function(){
+  handleHash();
+  var active=document.querySelector('.page-section.active');
+  if(active){
+    var els=active.querySelectorAll('.fade-in');
+    for(var j=0;j<els.length;j++){
+      (function(el,delay){setTimeout(function(){el.classList.add('visible')},delay)})(els[j],j*150);
+    }
+  }
+  calcSim();
+});
+</script>
+</body>
+</html>
