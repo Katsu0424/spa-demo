@@ -51,8 +51,8 @@ body {
   font-family: 'Zen Maru Gothic', sans-serif;
   font-weight: 400;
   color: var(--charcoal);
-  background: #FFFDF7;
-  line-height: 1.8;
+  background: #FFF8E1;
+  line-height: 1.9;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
 }
@@ -84,39 +84,57 @@ ul, ol {
 }
 
 .section {
-  padding: 88px 0;
+  padding: 96px 0;
+  position: relative;
+  background: #FFFFFF;
 }
 
 .section--beige {
-  background: var(--beige);
+  background: #FFF3E0;
 }
 
 .section--orange-light {
-  background: var(--orange-50);
+  background: #FFF8E1;
 }
 
 .section-title {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   color: var(--dark-brown);
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 8px;
+  background-image: radial-gradient(circle, var(--orange-500) 3px, transparent 3.5px);
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
 }
 
 .section-subtitle {
   text-align: center;
-  color: var(--gray-500);
-  font-size: 0.85rem;
+  color: var(--dark-brown);
+  font-size: 0.98rem;
+  font-weight: 500;
   margin-bottom: 48px;
-  letter-spacing: 0.1em;
+  opacity: 0.8;
 }
 
 .btn {
   display: inline-block;
-  padding: 14px 36px;
-  border-radius: 50px;
+  padding: 16px 40px;
+  border-radius: 999px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-align: center;
   transition: all var(--transition);
   cursor: pointer;
@@ -124,15 +142,15 @@ ul, ol {
 }
 
 .btn--primary {
-  background: var(--orange-500);
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
   color: var(--white);
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
 }
 
 .btn--primary:hover {
-  background: var(--orange-600);
   color: var(--white);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(255, 152, 0, 0.45);
 }
 
 .btn--outline {
@@ -144,6 +162,7 @@ ul, ol {
 .btn--outline:hover {
   background: var(--orange-500);
   color: var(--white);
+  transform: translateY(-3px) scale(1.03);
 }
 
 .btn--white {
@@ -158,13 +177,13 @@ ul, ol {
 
 /* ===== Placeholder Image ===== */
 .placeholder-img {
-  background: var(--gray-200);
+  background: linear-gradient(135deg, #FFE0B2, #FFCCBC);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gray-400);
+  color: #8D6E63;
   font-size: 0.85rem;
-  border-radius: var(--radius);
+  border-radius: 32px;
   overflow: hidden;
 }
 
@@ -267,19 +286,16 @@ ul, ol {
 }
 
 .logo-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--orange-500);
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logo-icon svg {
-  width: 24px;
-  height: 24px;
-  fill: var(--white);
+  width: 48px;
+  height: 48px;
 }
 
 .logo-text {
@@ -405,15 +421,37 @@ ul, ol {
   overflow: hidden;
 }
 
+.hero {
+  background: linear-gradient(180deg, #FFF8E1 0%, #FFFDF7 100%);
+}
+
 .hero::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 152, 0, 0.08) 0%, transparent 70%);
+  top: -30%;
+  right: -15%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(255, 152, 0, 0.18) 0%, transparent 70%);
   border-radius: 50%;
+  animation: floatSlow 10s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 204, 188, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatSlow 12s ease-in-out infinite reverse;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -30px); }
 }
 
 .hero .container {
@@ -429,25 +467,42 @@ ul, ol {
 
 .hero-badge {
   display: inline-block;
-  background: var(--orange-500);
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
   color: var(--white);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 4px 16px;
-  border-radius: 50px;
-  margin-bottom: 20px;
+  padding: 6px 20px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(255, 152, 0, 0.3);
 }
 
 .hero h1 {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 900;
-  line-height: 1.4;
+  line-height: 1.5;
   color: var(--dark-brown);
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+  letter-spacing: 0.03em;
 }
 
 .hero h1 span {
-  color: var(--orange-600);
+  color: var(--orange-700);
+  position: relative;
+  display: inline-block;
+  padding: 0 6px;
+}
+
+.hero h1 span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 14px;
+  background: rgba(255, 193, 7, 0.45);
+  z-index: -1;
+  border-radius: 4px;
 }
 
 .hero p {
@@ -465,8 +520,13 @@ ul, ol {
 
 .hero-image {
   width: 100%;
-  height: 360px;
+  height: 400px;
   animation: fadeIn 1s ease;
+}
+
+.hero-image.placeholder-img {
+  border-radius: 48% 52% 42% 58% / 55% 45% 55% 45%;
+  box-shadow: 0 16px 40px rgba(255, 152, 0, 0.2);
 }
 
 /* ===== Strengths ===== */
@@ -478,34 +538,40 @@ ul, ol {
 
 .strength-card {
   background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
+  border-radius: 28px;
+  padding: 44px 28px 36px;
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(93,64,55,0.08);
+  border: none;
   transition: all var(--transition);
+  position: relative;
 }
 
 .strength-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(93,64,55,0.12);
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 0 16px 40px rgba(255, 152, 0, 0.2);
+}
+
+.strength-card:nth-child(2):hover {
+  transform: translateY(-8px) rotate(1deg);
 }
 
 .strength-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 20px;
-  background: var(--orange-100);
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #FFE0B2, #FFCCBC);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.25);
 }
 
 .strength-icon svg {
-  width: 28px;
-  height: 28px;
-  fill: var(--orange-600);
+  width: 40px;
+  height: 40px;
+  fill: var(--orange-700);
 }
 
 .strength-card h3 {
@@ -530,16 +596,16 @@ ul, ol {
 
 .service-card {
   background: var(--white);
-  border-radius: var(--radius-lg);
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(93,64,55,0.08);
+  border: none;
   transition: all var(--transition);
 }
 
 .service-card:hover {
-  box-shadow: 0 12px 32px rgba(93,64,55,0.12);
-  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(255, 152, 0, 0.2);
+  transform: translateY(-8px);
 }
 
 .service-card-img {
@@ -571,60 +637,112 @@ ul, ol {
   color: var(--orange-600);
 }
 
-/* ===== News ===== */
+/* ===== News (warm: カード型+日付バッジ) ===== */
 .news-list {
-  max-width: 700px;
+  max-width: 760px;
   margin: 0 auto;
+  display: grid;
+  gap: 16px;
 }
 
 .news-item {
   display: flex;
-  gap: 16px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--gray-200);
-  align-items: baseline;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: var(--white);
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 4px 14px rgba(93,64,55,0.06);
+  transition: all var(--transition);
+}
+
+.news-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(255, 152, 0, 0.18);
 }
 
 .news-date {
-  font-size: 0.82rem;
-  color: var(--gray-500);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFE0B2, #FFCCBC);
+  color: var(--dark-brown);
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 78px;
   white-space: nowrap;
-  min-width: 90px;
+  line-height: 1.3;
 }
 
 .news-label {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 2px 10px;
-  border-radius: 50px;
-  background: var(--orange-100);
-  color: var(--orange-700);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--orange-500);
+  color: var(--white);
   white-space: nowrap;
 }
 
 .news-text {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
+  flex: 1;
 }
 
-/* ===== CTA Banner ===== */
+/* ===== CTA Banner (warm: カーブ切り抜き+フクロウ装飾) ===== */
 .cta-banner {
   background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
   color: var(--white);
   text-align: center;
-  padding: 60px 20px;
+  padding: 88px 20px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 60px 60px 0 0 / 80px 80px 0 0;
+  margin-top: 40px;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-banner .container {
+  position: relative;
+  z-index: 1;
 }
 
 .cta-banner h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .cta-banner p {
-  margin-bottom: 28px;
-  font-size: 0.95rem;
-  opacity: 0.9;
+  margin-bottom: 32px;
+  font-size: 1rem;
+  opacity: 0.95;
 }
 
 .cta-banner .cta-buttons {
@@ -754,32 +872,63 @@ ul, ol {
   color: var(--orange-600);
 }
 
-/* ===== Staff ===== */
+/* ===== Staff (warm: 縦積み+円形写真+波型背景) ===== */
 .staff-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 40px;
 }
 
 .staff-card {
   background: var(--white);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  border-radius: 32px;
+  overflow: visible;
+  box-shadow: 0 8px 24px rgba(93,64,55,0.08);
+  border: none;
   display: flex;
-  gap: 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 28px 32px;
+  position: relative;
+  text-align: center;
+  transition: all var(--transition);
+  margin-top: 70px;
+}
+
+.staff-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(135deg, #FFE0B2, #FFCCBC);
+  border-radius: 32px 32px 0 0;
+  clip-path: ellipse(90% 70% at 50% 30%);
+}
+
+.staff-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(255, 152, 0, 0.2);
 }
 
 .staff-photo {
-  width: 200px;
-  min-height: 260px;
+  width: 140px;
+  height: 140px;
+  min-height: 140px;
+  border-radius: 50%;
   flex-shrink: 0;
+  margin-top: -140px;
+  border: 6px solid var(--white);
+  box-shadow: 0 8px 20px rgba(93,64,55,0.15);
+  position: relative;
+  z-index: 1;
 }
 
 .staff-info {
-  padding: 28px;
+  padding: 20px 0 0;
   flex: 1;
+  width: 100%;
 }
 
 .staff-role {
@@ -800,16 +949,17 @@ ul, ol {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  justify-content: center;
 }
 
 .staff-qualifications span {
-  font-size: 0.72rem;
-  background: var(--orange-100);
+  font-size: 0.75rem;
+  background: linear-gradient(135deg, #FFE0B2, #FFCCBC);
   color: var(--orange-700);
-  padding: 2px 10px;
-  border-radius: 50px;
-  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-weight: 700;
 }
 
 .staff-message {
@@ -818,28 +968,31 @@ ul, ol {
   line-height: 1.7;
 }
 
-/* ===== Guide ===== */
+/* ===== Guide (warm: 吹き出し風+点線接続) ===== */
 .flow-steps {
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
   position: relative;
 }
 
 .flow-step {
   display: flex;
-  gap: 24px;
-  margin-bottom: 40px;
+  gap: 28px;
+  margin-bottom: 32px;
   position: relative;
+  align-items: flex-start;
 }
 
 .flow-step::before {
   content: '';
   position: absolute;
-  left: 23px;
-  top: 48px;
-  width: 2px;
-  height: calc(100% + 0px);
-  background: var(--orange-200);
+  left: 31px;
+  top: 64px;
+  width: 3px;
+  height: calc(100% + 8px);
+  background-image: linear-gradient(to bottom, var(--orange-400) 50%, transparent 50%);
+  background-size: 3px 12px;
+  background-repeat: repeat-y;
 }
 
 .flow-step:last-child::before {
@@ -847,33 +1000,63 @@ ul, ol {
 }
 
 .flow-step-num {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: var(--orange-500);
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
   color: var(--white);
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-weight: 900;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.35);
+  border: 4px solid var(--white);
+}
+
+.flow-step-content {
+  flex: 1;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 6px 18px rgba(93,64,55,0.08);
+  position: relative;
+  transition: all var(--transition);
+}
+
+.flow-step-content::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 24px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 12px solid var(--white);
+  filter: drop-shadow(-2px 0 2px rgba(93,64,55,0.05));
+}
+
+.flow-step:hover .flow-step-content {
+  transform: translateX(6px);
+  box-shadow: 0 10px 28px rgba(255, 152, 0, 0.18);
 }
 
 .flow-step-content h3 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--dark-brown);
-  margin-bottom: 6px;
-  padding-top: 10px;
+  margin-bottom: 8px;
+  padding-top: 0;
 }
 
 .flow-step-content p {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--gray-600);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* Insurance info */
@@ -1670,12 +1853,14 @@ ul, ol {
   }
 
   .staff-card {
-    flex-direction: column;
+    padding: 72px 24px 28px;
   }
 
   .staff-photo {
-    width: 100%;
-    min-height: 200px;
+    width: 128px;
+    height: 128px;
+    min-height: 128px;
+    margin-top: -128px;
   }
 
   .insurance-grid {
@@ -1792,7 +1977,20 @@ ul, ol {
       <div class="container">
         <a href="#home" class="logo">
           <div class="logo-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2c1.1 0 2 .45 2.71 1.17L12 7.88 9.29 5.17C10 4.45 11 4 12 4zM7 9.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm10 0a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM12 18c-2.21 0-4-1.34-4-3h8c0 1.66-1.79 3-4 3z"/></svg>
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="32" cy="36" rx="22" ry="24" fill="#FF9800" opacity="0.15"/>
+              <path d="M14 20 Q12 8 22 12 Q28 4 32 4 Q36 4 42 12 Q52 8 50 20" stroke="#5D4037" stroke-width="2.5" fill="#FF9800" opacity="0.3"/>
+              <circle cx="24" cy="28" r="8" fill="#FFF3E0" stroke="#5D4037" stroke-width="2"/>
+              <circle cx="40" cy="28" r="8" fill="#FFF3E0" stroke="#5D4037" stroke-width="2"/>
+              <circle cx="24" cy="28" r="4" fill="#3E2723"/>
+              <circle cx="40" cy="28" r="4" fill="#3E2723"/>
+              <circle cx="25.5" cy="26.5" r="1.5" fill="#FFF"/>
+              <circle cx="41.5" cy="26.5" r="1.5" fill="#FFF"/>
+              <path d="M30 34 L32 38 L34 34" stroke="#E65100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#FF9800"/>
+              <path d="M20 44 Q32 52 44 44" stroke="#5D4037" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M12 36 Q8 40 10 48 Q12 44 16 42" stroke="#5D4037" stroke-width="1.5" fill="#FF9800" opacity="0.2"/>
+              <path d="M52 36 Q56 40 54 48 Q52 44 48 42" stroke="#5D4037" stroke-width="1.5" fill="#FF9800" opacity="0.2"/>
+            </svg>
           </div>
           <div class="logo-text">
             アウル訪問看護ステーション
@@ -1839,9 +2037,9 @@ ul, ol {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="hero-badge">幅広い看護に対応</span>
-          <h1>あなたの暮らしに<br><span>安心</span>を届ける<br>訪問看護</h1>
-          <p>アウル訪問看護ステーションは、大阪府貝塚市を中心に、幅広い分野の看護を提供するステーションです。<br>経験豊富な看護師が直接ご自宅に伺い、365日体制でお一人おひとりの生活をサポートします。</p>
+          <span class="hero-badge">365日、あなたのそばで</span>
+          <h1>あなたの「おうち」に<br><span>安心</span>を届けたい</h1>
+          <p>アウル訪問看護ステーションは、大阪府貝塚市を中心に、<br>幅広い看護（精神科含む）に寄り添うステーションです。<br>フクロウのようにそっと見守り、暮らしに寄り添います。</p>
           <div class="hero-buttons">
             <a href="#contact" class="btn btn--primary">お問い合わせ</a>
             <a href="#guide" class="btn btn--outline">ご利用案内を見る</a>
@@ -1855,7 +2053,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">アウルが選ばれる3つの理由</h2>
-        <p class="section-subtitle">OUR STRENGTHS</p>
+        <p class="section-subtitle">フクロウのように、いつでもそばで見守ります</p>
         <div class="strengths-grid fade-in">
           <div class="strength-card">
             <div class="strength-icon">
@@ -1886,7 +2084,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">サービス紹介</h2>
-        <p class="section-subtitle">SERVICES</p>
+        <p class="section-subtitle">訪問看護を中心に、暮らしをトータルでサポートします</p>
         <div class="services-grid fade-in">
           <div class="service-card">
             <div class="service-card-img placeholder-img">訪問看護イメージ</div>
@@ -1920,7 +2118,7 @@ ul, ol {
     <section class="section provisional" data-label="仮置き - お知らせ運用方法を確認中">
       <div class="container">
         <h2 class="section-title">お知らせ</h2>
-        <p class="section-subtitle">NEWS</p>
+        <p class="section-subtitle">最新の情報をお届けします</p>
         <div class="news-list fade-in">
           <div class="news-item">
             <span class="news-date">2026.03.01</span>
@@ -2054,7 +2252,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">ご利用の流れ</h2>
-        <p class="section-subtitle">FLOW</p>
+        <p class="section-subtitle">お問い合わせからサービス開始まで</p>
         <div class="flow-steps fade-in">
           <div class="flow-step">
             <div class="flow-step-num">1</div>
@@ -2092,8 +2290,8 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">保険制度について</h2>
-        <p class="section-subtitle">INSURANCE</p>
-        <div class="insurance-grid fade-in provisional" data-label="仮置き - 担当者チェック後に確定">
+        <p class="section-subtitle">訪問看護は公的保険でご利用いただけます</p>
+        <div class="insurance-grid fade-in provisional" data-label="仮置き - 中井さんチェック後に確定">
           <div class="insurance-card">
             <h3>医療保険での訪問看護</h3>
             <ul>
@@ -2122,7 +2320,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">料金シミュレーション</h2>
-        <p class="section-subtitle">FEE SIMULATOR</p>
+        <p class="section-subtitle">概算の自己負担額を確認できます</p>
         <div class="simulator fade-in">
           <h3>月額の目安を計算</h3>
           <div class="sim-group">
@@ -2161,7 +2359,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">よくあるご質問</h2>
-        <p class="section-subtitle">FAQ</p>
+        <p class="section-subtitle">お問い合わせの多い質問をまとめました</p>
         <div class="faq-list fade-in">
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">訪問看護を利用するにはどうすればいいですか？</button>
@@ -2233,7 +2431,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">主なサービス</h2>
-        <p class="section-subtitle">MAIN SERVICES</p>
+        <p class="section-subtitle">看護師がご自宅でお届けするケアをご紹介します</p>
         <div class="service-list fade-in">
           <div class="service-list-item">
             <div class="service-list-num">1</div>
@@ -2293,7 +2491,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">こんな方がご利用されています</h2>
-        <p class="section-subtitle">WHO USES OUR SERVICE</p>
+        <p class="section-subtitle">幅広い方々にご利用いただいています</p>
         <div class="medical-grid fade-in">
           ※ 後日、対象となる疾患・状態のリストを追加予定
         </div>
@@ -2305,7 +2503,7 @@ ul, ol {
     <section class="section section--orange-light">
       <div class="container">
         <h2 class="section-title">関連サービス</h2>
-        <p class="section-subtitle">RELATED SERVICES</p>
+        <p class="section-subtitle">訪問看護と連携した事業を展開しています</p>
         <div class="services-grid fade-in" style="grid-template-columns: repeat(2, 1fr); max-width:700px; margin:0 auto;">
           <div class="service-card">
             <div class="service-card-img placeholder-img">生活介護イメージ写真</div>
@@ -2369,7 +2567,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">対応疾患・提供可能なケア</h2>
-        <p class="section-subtitle">AVAILABLE CARE</p>
+        <p class="section-subtitle">多様なニーズに応じたケアを提供しています</p>
         <div class="medical-grid fade-in">
           <div class="medical-card provisional" data-label="仮置き - 後日リスト確定予定">
             <h3>対応可能な主な疾患</h3>
@@ -2404,7 +2602,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">連携の流れ</h2>
-        <p class="section-subtitle">COOPERATION FLOW</p>
+        <p class="section-subtitle">医療機関の皆さまと連携する流れ</p>
         <div class="flow-steps fade-in">
           <div class="flow-step">
             <div class="flow-step-num">1</div>
@@ -2442,7 +2640,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">ステーション情報</h2>
-        <p class="section-subtitle">STATION INFO</p>
+        <p class="section-subtitle">ご紹介前にぜひご確認ください</p>
         <table class="station-table fade-in">
           <tr><th>事業所名</th><td>アウル訪問看護ステーション</td></tr>
           <tr><th>事業所番号</th><td>2761390216</td></tr>
@@ -2485,7 +2683,7 @@ ul, ol {
     <section class="section proposal" data-label="">
       <div class="container">
         <h2 class="section-title">代表メッセージ</h2>
-        <p class="section-subtitle">MESSAGE</p>
+        <p class="section-subtitle">代表からのごあいさつ</p>
         <div class="rep-message fade-in">
           <p class="rep-message-text">
             ここに代表者からの短いメッセージを掲載することをご提案します。<br>
@@ -2503,7 +2701,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">会社概要</h2>
-        <p class="section-subtitle">OVERVIEW</p>
+        <p class="section-subtitle">アウル訪問看護ステーションについて</p>
         <table class="company-table fade-in">
           <tr><th>事業所名</th><td>アウル訪問看護ステーション</td></tr>
           <tr><th>事業所番号</th><td>2761390216</td></tr>
@@ -2523,7 +2721,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">対応エリア</h2>
-        <p class="section-subtitle">SERVICE AREA</p>
+        <p class="section-subtitle">貝塚市を中心に泉州エリアへ伺います</p>
         <p style="text-align:center;color:var(--gray-600);font-size:0.9rem;margin-bottom:28px;">貝塚市を中心に、近隣市町村にも対応いたします。下記以外のエリアもお気軽にご相談ください。</p>
         <div class="area-list fade-in">
           <span class="primary">貝塚市</span>
@@ -2537,8 +2735,8 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">各種書類・苦情窓口</h2>
-        <p class="section-subtitle">DOCUMENTS</p>
-        <div class="docs-grid fade-in provisional" data-label="仮置き - 担当者チェック後にPDFリンク設定">
+        <p class="section-subtitle">各種書類・ご相談窓口のご案内</p>
+        <div class="docs-grid fade-in provisional" data-label="仮置き - 中井さんチェック後にPDFリンク設定">
           <a href="#" class="doc-link">
             <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
             重要事項説明書（医療）
@@ -2556,7 +2754,7 @@ ul, ol {
           <h3 style="font-size:1rem;font-weight:700;color:var(--dark-brown);margin-bottom:12px;">苦情・ご意見の受付</h3>
           <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.8;">
             サービスに関するご意見・苦情は、以下の窓口にて承っております。<br>
-            <strong>当ステーション</strong>: 072-449-8784（担当: 担当者）<br>
+            <strong>当ステーション</strong>: 072-449-8784（担当: 山脇）<br>
             <strong>大阪府</strong>: 大阪府国民健康保険団体連合会<br>
             <strong>市町村窓口</strong>: 各市町村の介護保険担当課
           </p>
@@ -2568,7 +2766,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">アクセス</h2>
-        <p class="section-subtitle">ACCESS</p>
+        <p class="section-subtitle">事業所の所在地とアクセス方法</p>
         <div class="fade-in" style="max-width:700px;margin:0 auto;">
           <p style="text-align:center;color:var(--gray-600);font-size:0.9rem;margin-bottom:16px;">
             〒597-0072 大阪府貝塚市畠中 1-7-45 ハイネスピヴァット 302
@@ -2681,7 +2879,7 @@ ul, ol {
     <section class="section section--beige">
       <div class="container">
         <h2 class="section-title">募集要項</h2>
-        <p class="section-subtitle">JOB DESCRIPTION</p>
+        <p class="section-subtitle">現在募集中の職種をご案内します</p>
         <table class="recruit-table fade-in">
           <tr><th>募集職種</th><td>看護師（パート）</td></tr>
           <tr><th>雇用形態</th><td>パート</td></tr>
@@ -2702,7 +2900,7 @@ ul, ol {
     <section class="section">
       <div class="container">
         <h2 class="section-title">応募の流れ</h2>
-        <p class="section-subtitle">APPLICATION FLOW</p>
+        <p class="section-subtitle">ご応募から採用までの流れ</p>
         <div class="flow-steps fade-in">
           <div class="flow-step">
             <div class="flow-step-num">1</div>
